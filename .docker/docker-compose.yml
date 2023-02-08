@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  php-sze:
+    image: php:8.2-apache
+    ports:
+      - "29085:80"
+    volumes:
+      - "./apache.conf:/etc/apache2/sites-available/000-default.conf"
+      - "../:/var/www/"
