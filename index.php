@@ -26,11 +26,31 @@ $books = [
         'year' => 1951,
     ],
 ];
+function filter(
+    array   $books,
+    string  $index = 'author',
+    ?string $value = null,
+): array
+{
+    $filteredBooks = [];
+    foreach ($books as $book) {
+        if ($value == $book[$index]) {
+            $filteredBooks[] = $book;
+        }
+    }
 
+    return $filteredBooks;
+}
+
+$filteredData = filter(
+    $books,
+    'author',
+    'Isaac Asimov',
+);
 ?>
 <ul>
     <?php
-    foreach ($books as $book) {
+    foreach ($filteredData as $book) {
         ?>
         <li>
             <?= $book['name'].' ('.$book['year'].')' ?>
