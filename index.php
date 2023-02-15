@@ -26,25 +26,9 @@ $books = [
         'year' => 1951,
     ],
 ];
-function filter(
-    array   $books,
-    callable $fnc,
-): array
-{
-    $filteredBooks = [];
-    foreach ($books as $book) {
-        if ($fnc($book)) {
-            $filteredBooks[] = $book;
-        }
-    }
 
-    return $filteredBooks;
-}
+$filteredData = array_filter($books, fn (array $book): bool => $book['year'] < 1990)
 
-$filteredData = filter(
-    $books,
-    fn (array $book): bool => $book['year'] < 1990,
-);
 ?>
 <ul>
     <?php
