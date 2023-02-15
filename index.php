@@ -43,9 +43,7 @@ function filter(
 
 $filteredData = filter(
     $books,
-    function ($book) {
-        return $book['year'] < 1990;
-    },
+    fn (array $book): bool => $book['year'] < 1990,
 );
 ?>
 <ul>
