@@ -28,13 +28,12 @@ $books = [
 ];
 function filter(
     array   $books,
-    string  $index = 'author',
-    ?string $value = null,
+    callable $fnc,
 ): array
 {
     $filteredBooks = [];
     foreach ($books as $book) {
-        if ($value == $book[$index]) {
+        if ($fnc($book)) {
             $filteredBooks[] = $book;
         }
     }
@@ -44,8 +43,9 @@ function filter(
 
 $filteredData = filter(
     $books,
-    'author',
-    'Isaac Asimov',
+    function ($book) {
+        return $book['year'] < 1990;
+    },
 );
 ?>
 <ul>
