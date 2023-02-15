@@ -7,7 +7,23 @@
 </head>
 <body>
 <h1>
-    Hello World!
+    <?php
+
+    $name = [
+        'foobar' => 1,
+        2,
+        3,
+        4,
+        5,
+    ];
+
+    echo '..::DEBUGGING::..';
+    echo '<pre>';
+    var_dump($name);
+    echo '</pre>';
+    exit;
+
+    ?>
 </h1>
 </body>
 </html>
