@@ -33,9 +33,7 @@ $books = [
     foreach ($books as $book) {
         ?>
         <li>
-            <?php
-            echo $book['name'].' ('.$book['year'].')';
-            ?>
+            <?= $book['name'].' ('.$book['year'].')' ?>
         </li>
         <?php
     }
