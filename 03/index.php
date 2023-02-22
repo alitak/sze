@@ -2,13 +2,12 @@
 
 require 'functions.php';
 
-$title = 'Dashboard';
+$uri = $_SERVER['REQUEST_URI'];
 
-//if ($_SERVER['REQUEST_URI'] === '/03/') {
-//    echo 'bg-red-900 text-white';
-//} else {
-//    echo 'text-gray-300 hover:bg-gray-700 hover:text-white';
-//}
-//echo $_SERVER['REQUEST_URI'] === '/03/' ? 'bg-red-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white';
-
-require 'views/index.view.php';
+if ($uri === '/03/') {
+    require 'controllers/dashboard.php';
+} elseif ($uri === '/03/team') {
+    require 'controllers/team.php';
+} elseif ($uri === '/03/projects') {
+    require 'controllers/projects.php';
+}
