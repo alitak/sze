@@ -1,13 +1,7 @@
 <?php
 
-$title = 'Team';
+require 'functions.php';
 
-function dd($param): void
-{
-    echo '<pre>';
-    var_dump($param);
-    echo '</pre>';
-    die();
-}
+$title = 'Team';
 
 require 'views/team.view.php';
