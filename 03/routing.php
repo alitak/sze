@@ -8,21 +8,34 @@ function abort(int $statusCode = 404)
     exit;
 }
 
+// uri kinyerése, tömbbé alakítása
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-//$uri = trim($uri, '/');
-//$uri = str_replace('/', '', $uri);
-//$uri = str_replace('show', 'foo', $uri);
-//$uri = substr($uri, 4);
-dd($uri);
+$uri = trim($uri, '/');
+$uri = explode('/', $uri);
 
-$routing = [
-    '/' => 'controllers/dashboard.php',
-    '/team' => 'controllers/team.php',
-    '/projects' => 'controllers/projects.php',
-];
-
-if (array_key_exists($uri, $routing)) {
-    require $routing[$uri];
-} else {
+// Alapértelmezett kontroller beállítása
+//if ('' === $uri[0]) {
+//    $uri[0] = 'Dashboard';
+//}
+$uri[0] = ('' === $uri[0]) ? 'Dashboard' : $uri[0];
+if (! is_file('controllers/'.$uri[0].'.php')) {
     abort();
 }
+
+// alapértelmezett method beállítása
+$uri[1] = ('' === $uri[1]) ? 'index' : $uri[1];
+if (! method_exists('controllers/'.$uri[0].'.php', $uri[1])) {
+    abort();
+}
+
+// controller betöltése
+require 'controllers/'.$uri[0].'.php';
+
+// controller példányosítása
+//$controller = new Team();
+//$controller = new Dashboard();
+$controller = new $uri[0]();
+
+// metódus meghívása
+//$controller->index();
+$controller->{$uri[1]}();
