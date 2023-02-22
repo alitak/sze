@@ -9,10 +9,16 @@ function abort(int $statusCode = 404)
 }
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+//$uri = trim($uri, '/');
+//$uri = str_replace('/', '', $uri);
+//$uri = str_replace('show', 'foo', $uri);
+//$uri = substr($uri, 4);
+dd($uri);
+
 $routing = [
-    '/03/' => 'controllers/dashboard.php',
-    '/03/team' => 'controllers/team.php',
-    '/03/projects' => 'controllers/projects.php',
+    '/' => 'controllers/dashboard.php',
+    '/team' => 'controllers/team.php',
+    '/projects' => 'controllers/projects.php',
 ];
 
 if (array_key_exists($uri, $routing)) {
