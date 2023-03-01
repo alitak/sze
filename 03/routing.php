@@ -17,24 +17,24 @@ $uri = explode('/', $uri);
 //if ('' === $uri[0]) {
 //    $uri[0] = 'Dashboard';
 //}
-$uri[0] = ('' === $uri[0]) ? 'Dashboard' : $uri[0];
+$uri[0] = ucfirst(('' === $uri[0]) ? 'Dashboard' : $uri[0]);
 if (! is_file('controllers/'.$uri[0].'.php')) {
-    abort();
-}
-
-// alapértelmezett method beállítása
-$uri[1] = ('' === $uri[1]) ? 'index' : $uri[1];
-if (! method_exists('controllers/'.$uri[0].'.php', $uri[1])) {
     abort();
 }
 
 // controller betöltése
 require 'controllers/'.$uri[0].'.php';
-
 // controller példányosítása
 //$controller = new Team();
 //$controller = new Dashboard();
 $controller = new $uri[0]();
+
+// alapértelmezett method beállítása
+$uri[1] = (array_key_exists(1, $uri) && '' !== $uri[1]) ? $uri[1] : 'index';
+
+if (! method_exists($controller, $uri[1])) {
+    abort();
+}
 
 // metódus meghívása
 //$controller->index();
