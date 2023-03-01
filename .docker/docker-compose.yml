@@ -3,8 +3,32 @@ version: '3.7'
 services:
   php-sze:
     image: php-sze/php-sze
+    container_name: php-sze
     build: .
     ports:
       - "29085:80"
     volumes:
       - "../03:/var/www/"
+
+  mysql-local:
+    image: mariadb:10.9
+    #    image: mysql:8.0.27
+    container_name: mysql-local
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: a
+    #    command: mysqld --default-authentication-plugin=mysql_native_password
+
+  adminer-local:
+    image: adminer
+    container_name: adminer-local
+    ports:
+      - "29084:8080"
+    environment:
+      - ADMINER_DESIGN=lucas-sandery
+      - ADMINER_DEFAULT_SERVER=mysql-local
+    depends_on:
+      - mysql-local
