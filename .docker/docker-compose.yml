@@ -8,7 +8,7 @@ services:
     ports:
       - "29085:80"
     volumes:
-      - "../03:/var/www/"
+      - "../04:/var/www/"
 
   mysql-local:
     image: mariadb:10.9
