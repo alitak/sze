@@ -15,9 +15,7 @@ class Database
     public function query(string $param)
     {
         $statement = $this->connection->prepare($param);
-        $statement->execute([
-            'id' => $_GET['id'],
-        ]);
+        $statement->execute();
 
         return $statement;
     }
