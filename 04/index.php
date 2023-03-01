@@ -1,24 +1,12 @@
 <?php
 
 require 'functions.php';
-
 //require 'routing.php';
+require 'Database.php';
 
-class Database
-{
-    public function query(string $param)
-    {
-        $dsn = 'mysql:host=mysql-local;port=3306;dbname=sze;charset=utf8mb4';
-        $pdo = new PDO($dsn, 'root', 'a');
+$config = require 'config.php';
 
-        $statement = $pdo->prepare($param);
-        $statement->execute();
-
-        return $statement;
-    }
-}
-
-$db = new Database();
+$db = new Database($config['database']);
 $posts = $db
     ->query('select * from posts')
     ->fetchAll(PDO::FETCH_ASSOC);
