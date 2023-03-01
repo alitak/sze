@@ -9,7 +9,7 @@ $config = require 'config.php';
 $db = new Database($config['database']);
 $posts = $db
     ->query('select * from posts')
-    ->fetchAll(PDO::FETCH_ASSOC);
+    ->fetchAll();
 
 dd($posts);
 foreach ($posts as $post) {
