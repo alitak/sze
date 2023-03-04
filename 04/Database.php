@@ -12,10 +12,10 @@ class Database
         ]);
     }
 
-    public function query(string $param)
+    public function query(string $query, array $params = [])
     {
-        $statement = $this->connection->prepare($param);
-        $statement->execute();
+        $statement = $this->connection->prepare($query);
+        $statement->execute($params);
 
         return $statement;
     }

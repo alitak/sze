@@ -1,4 +1,5 @@
 <?php
+require 'models/Post.php';
 
 class Posts
 {
@@ -7,23 +8,18 @@ class Posts
     {
         $title = 'Posts index';
 
-        require 'Database.php';
-        $config = require 'config.php';
+        $posts = (new Post())->all();
 
-        $db = new Database($config['database']);
-
-        $query = 'select * from posts';
-        $posts = $db
-            ->query($query)
-            ->fetchAll();
-
-        require 'views/post.view.php';
+        require 'views/posts/index.view.php';
     }
 
     public function show()
     {
-        $title = 'Post show';
+        $id = $_GET['id'];
 
-        require 'views/post.view.php';
+        $post = (new Post())->find($id);
+        $title = $post['title'];
+
+        require 'views/posts/show.view.php';
     }
 }

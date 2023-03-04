@@ -1,11 +1,14 @@
 <?php
 
-class Team
+class Teams
 {
 
     public function index()
     {
         $title = 'Team index';
+
+        require 'models/Team.php';
+        $teams = (new Team())->all();
 
         require 'views/team.view.php';
     }
