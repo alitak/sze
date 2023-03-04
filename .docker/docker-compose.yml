@@ -21,6 +21,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: a
     #    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-sze:/var/lib/mysql
 
   adminer-local:
     image: adminer
@@ -32,3 +34,7 @@ services:
       - ADMINER_DEFAULT_SERVER=mysql-local
     depends_on:
       - mysql-local
+
+volumes:
+  mysql-sze:
+    driver: local
