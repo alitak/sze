@@ -13,10 +13,8 @@ class Posts
         require 'views/posts/index.view.php';
     }
 
-    public function show()
+    public function show(int $id)
     {
-        $id = $_GET['id'];
-
         $post = (new Post())->find($id);
         $title = $post['title'];
 

@@ -37,5 +37,4 @@ if (! method_exists($controller, $uri[1])) {
 }
 
 // metódus meghívása
-//$controller->index();
-$controller->{$uri[1]}();
+call_user_func_array([$controller, $uri[1]], array_slice($uri, 2));

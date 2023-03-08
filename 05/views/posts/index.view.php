@@ -11,7 +11,7 @@ require 'views/partials/header.view.php';
 
             <?php foreach ($posts as $post) { ?>
                 <li>
-                    <a class="text-blue-500" href="/posts/show/?id=<?php echo $post['id']; ?>">
+                    <a class="text-blue-500" href="/posts/show/<?php echo $post['id']; ?>">
                         <?php echo $post['title']; ?>
                     </a>
                 </li>
