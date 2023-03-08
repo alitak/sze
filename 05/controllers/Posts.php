@@ -6,7 +6,7 @@ class Posts
 
     public function index()
     {
-        $title = 'Posts index';
+        $title = 'Bejegyzések';
 
         $posts = (new Post())->all();
 
@@ -19,5 +19,12 @@ class Posts
         $title = $post['title'];
 
         require 'views/posts/show.view.php';
+    }
+
+    public function create()
+    {
+        $title = 'Bejegyzés létrehozása';
+
+        require 'views/posts/create.view.php';
     }
 }
