@@ -1,5 +1,6 @@
 <?php
 require 'models/Post.php';
+require 'Validator.php';
 
 class Posts
 {
@@ -16,7 +17,7 @@ class Posts
     public function show(int $id)
     {
         $post = (new Post())->find($id);
-        $title = $post['title'];
+        $title = htmlspecialchars($post['title']);
 
         require 'views/posts/show.view.php';
     }
@@ -28,7 +29,7 @@ class Posts
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['title'] = trim($_POST['title']);
 
-            if ($_POST['title'] == '') {
+            if (Validator::isEmpty($_POST['title'])) {
                 $errors = 'A bejegyzés címe nem lehet üres!';
             }
             if (strlen($_POST['title']) > 200) {

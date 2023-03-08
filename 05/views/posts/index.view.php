@@ -13,7 +13,7 @@ require 'views/partials/header.view.php';
                 <?php foreach ($posts as $post) { ?>
                     <li>
                         <a class="text-blue-500" href="/posts/show/<?php echo $post['id']; ?>">
-                            <?php echo $post['title']; ?>
+                            <?php echo htmlspecialchars($post['title']); ?>
                         </a>
                     </li>
                 <?php } ?>
