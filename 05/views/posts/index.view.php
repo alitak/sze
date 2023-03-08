@@ -7,7 +7,7 @@ require 'views/partials/header.view.php';
 
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            <a class="block w-48 text-center border border-1 border-gray-500 bg-gray-500 rounded text-white p-2 mb-4" href="/posts/create">Post létrehozása</a>
+            <a class="block w-48 text-center border border-1 border-gray-500 bg-gray-500 rounded text-white p-2 mb-4" href="/posts/create">Bejegyzés létrehozása</a>
             
             <ul>
                 <?php foreach ($posts as $post) { ?>

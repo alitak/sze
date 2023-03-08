@@ -25,6 +25,12 @@ class Posts
     {
         $title = 'Bejegyzés létrehozása';
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            (new Post())->create([
+                'title' => $_POST['title'],
+            ]);
+        }
+
         require 'views/posts/create.view.php';
     }
 }
