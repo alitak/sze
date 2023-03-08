@@ -8,6 +8,28 @@ require 'views/partials/header.view.php';
     <main class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="mt-5 md:col-span-2 md:mt-0">
+                <?php
+                if (isset($message)):
+                ?>
+                    <div class="bg-green-500 text-white p-2 mb-4 rounded">
+                        <?php
+                        echo $message;
+                        ?>
+                    </div>
+                <?php
+                endif;
+                ?>
+                <?php
+                if (isset($errors)):
+                ?>
+                    <div class="bg-cyan-500 text-white p-2 mb-4 rounded">
+                        <?php
+                        echo $errors;
+                        ?>
+                    </div>
+                <?php
+                endif;
+                ?>
                 <form action="" method="POST">
                     <div class="shadow sm:overflow-hidden sm:rounded-md">
                         <div class="space-y-6 bg-white px-4 py-5 sm:p-6">

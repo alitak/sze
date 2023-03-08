@@ -26,9 +26,22 @@ class Posts
         $title = 'Bejegyzés létrehozása';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            (new Post())->create([
-                'title' => $_POST['title'],
-            ]);
+            $_POST['title'] = trim($_POST['title']);
+
+            if ($_POST['title'] == '') {
+                $errors = 'A bejegyzés címe nem lehet üres!';
+            }
+            if (strlen($_POST['title']) > 200) {
+                $errors = 'A bejegyzés legfeljebb 200 karakter lehet!';
+            }
+
+            if (!isset($errors)) {
+                (new Post())->create([
+                    'title' => $_POST['title'],
+                ]);
+
+                $message = 'Sikeres mentés';
+            }
         }
 
         require 'views/posts/create.view.php';
