@@ -16,7 +16,8 @@ function isUri(string $uri): bool
 function abort(int $statusCode = 404): void
 {
     http_response_code($statusCode);
-    require 'views/errors/'.$statusCode.'.view.php';
+
+    view('errors/'.$statusCode);
 
     exit;
 }
@@ -26,7 +27,7 @@ function base_path(string $path): string
     return BASE_PATH.$path;
 }
 
-function view(string $view, array $params)
+function view(string $view, array $params = [])
 {
     extract($params);
 
