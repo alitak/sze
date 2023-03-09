@@ -1,22 +1,14 @@
 <?php
+require base_path('models/Team.php');
 
 class Teams
 {
 
     public function index()
     {
-        $title = 'Team index';
-
-        require 'models/Team.php';
-        $teams = (new Team())->all();
-
-        require 'views/team.view.php';
-    }
-
-    public function show()
-    {
-        $title = 'Team show';
-
-        require 'views/team.view.php';
+        view('teams/index', [
+            'title' => 'Team index',
+            'teams' => (new Team())->all(),
+        ]);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-require 'Database.php';
+require base_path('Database.php');
 
 abstract class Model
 {
@@ -8,7 +8,7 @@ abstract class Model
 
     public function __construct()
     {
-        $config = require 'config.php';
+        $config = require base_path('config.php');
 
         $this->db = new Database($config['database']);
     }

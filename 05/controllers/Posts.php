@@ -1,25 +1,26 @@
 <?php
-require 'models/Post.php';
-require 'Validator.php';
+require base_path('models/Post.php');
+require base_path('Validator.php');
 
 class Posts
 {
 
     public function index()
     {
-        $title = 'Bejegyzések';
-
-        $posts = (new Post())->all();
-
-        require 'views/posts/index.view.php';
+        view('posts/index', [
+            'title' => 'Bejegyzések',
+            'posts' => (new Post())->all(),
+        ]);
     }
 
     public function show(int $id)
     {
         $post = (new Post())->find($id);
-        $title = htmlspecialchars($post['title']);
 
-        require 'views/posts/show.view.php';
+        view('posts/show', [
+            'title' => htmlspecialchars($post['title']),
+            'post' => $post,
+        ]);
     }
 
     public function create()
@@ -45,6 +46,6 @@ class Posts
             }
         }
 
-        require 'views/posts/create.view.php';
+        require base_path('views/posts/create.view.php');
     }
 }
