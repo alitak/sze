@@ -5,5 +5,14 @@
             echo $title;
             ?>
         </h1>
+        <h2 class="text-2xl font-bold tracking-tight text-gray-700">
+            <?php
+            if (isset($_SESSION['email'])) {
+                echo $_SESSION['email'];
+            } else {
+                echo 'guest';
+            }
+            ?>
+        </h2>
     </div>
 </header>

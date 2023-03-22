@@ -10,6 +10,9 @@
                         <a href="/" class="<?php echo isUri('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?> px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</a>
                         <a href="/teams" class="<?php echo isUri('/teams') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?> px-3 py-2 rounded-md text-sm font-medium">Teams</a>
                         <a href="/posts" class="<?php echo isUri('/posts') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?> px-3 py-2 rounded-md text-sm font-medium">Bejegyzések</a>
+                        <a href="/register/create" class="<?php echo isUri('/register/create') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?> px-3 py-2 rounded-md text-sm font-medium">Regisztráció</a>
+                        <a href="/login/create" class="<?php echo isUri('/login/create') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?> px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                        <a href="/login/logout" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Logout</a>
                     </div>
                 </div>
             </div>

@@ -27,6 +27,13 @@ abstract class Model
             ->fetch();
     }
 
+    public function findByEmail(string $email): array
+    {
+        return $this->db
+            ->query('select * from '.$this->table.' where email = :email limit 1', ['email' => $email])
+            ->fetch();
+    }
+
     public function create(array $params)
     {
         // insert into table (column1, coliumn2) values ('foo', 'bar')
