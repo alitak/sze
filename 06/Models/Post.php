@@ -1,5 +1,6 @@
 <?php
-require 'Model.php';
+
+namespace Models;
 
 class Post extends Model
 {

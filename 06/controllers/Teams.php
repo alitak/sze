@@ -1,5 +1,7 @@
 <?php
 
+use Models\Team;
+
 class Teams
 {
 

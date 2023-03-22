@@ -1,16 +1,16 @@
 <?php
-require base_path('Database.php');
 
+namespace Models;
 abstract class Model
 {
 
-    private Database $db;
+    private \Database $db;
 
     public function __construct()
     {
         $config = require base_path('config.php');
 
-        $this->db = new Database($config['database']);
+        $this->db = new \Database($config['database']);
     }
 
     public function all(): array

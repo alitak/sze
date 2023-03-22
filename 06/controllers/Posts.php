@@ -1,5 +1,7 @@
 <?php
 
+use Models\Post;
+
 class Posts
 {
 
