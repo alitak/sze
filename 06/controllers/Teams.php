@@ -1,5 +1,4 @@
 <?php
-require base_path('models/Team.php');
 
 class Teams
 {

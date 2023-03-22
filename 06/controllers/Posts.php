@@ -1,6 +1,4 @@
 <?php
-require base_path('models/Post.php');
-require base_path('Validator.php');
 
 class Posts
 {
