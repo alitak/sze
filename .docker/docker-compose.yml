@@ -1,4 +1,5 @@
 version: '3.7'
+name: sze
 
 services:
   php-sze:
@@ -8,7 +9,7 @@ services:
     ports:
       - "29085:80"
     volumes:
-      - "../05:/var/www/"
+      - "../06:/var/www/"
 
   mysql-local:
     image: mariadb:10.9
