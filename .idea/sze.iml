@@ -109,6 +109,18 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/sebastian/complexity" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/sebastian/global-state" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/sebastian/environment" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/barryvdh/laravel-ide-helper" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/barryvdh/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/phpdocumentor/reflection-common" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/phpdocumentor/type-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/event-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/deprecations" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/phpstan/phpdoc-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/maximebf/debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/barryvdh/laravel-debugbar" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
