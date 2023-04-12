@@ -43,8 +43,8 @@ COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
 #COPY ./ /var/www
 
 # install npm
-#RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
-#    apt-get install -y nodejs
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
 #    && \
 #    npm install && \
 #    npm run prod && \
@@ -58,5 +58,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # cleanup
 RUN rmdir /var/www/html && \
-    chown -R www-data: /var/www
+    chown -R www-data: /var/www && \
+    chmod -R 777 /var/www/storage
 #    rm -rf /var/lib/apt/lists/*

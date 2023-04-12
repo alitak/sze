@@ -8,4 +8,6 @@
     <h3>
         {{ $post->user->name }}
     </h3>
+
+    <a href="/posts">Back</a>
 @endsection
