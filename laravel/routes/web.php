@@ -11,8 +11,11 @@ Route::get('/', function () {
 });
 
 Route::get('posts', function () {
+    return view('posts.index', [
+        'posts' => Post::with('user')->get(),
+    ]);
+
 //    return Post::with('user')->get();
-    $output = '';
     foreach (Post::get()->load('user') as $post) {
         $output .= '<h2>'.$post->title.'</h2>'.'<h3>'.$post->user->name.'</h3>';
     }
@@ -20,6 +23,9 @@ Route::get('posts', function () {
 });
 
 Route::get('posts/show/{post}', function (Post $post) {
+    return view('posts.show', [
+        'post' => $post,
+    ]);
     return '<h1>'.$post->title.'</h1>'.'<h3>'.$post->user->name.'</h3>';
 //    return $post->user;
 });
