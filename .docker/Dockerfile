@@ -58,6 +58,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # cleanup
 RUN rmdir /var/www/html && \
-    chown -R www-data: /var/www && \
-    chmod -R 777 /var/www/storage
+    chown -R www-data: /var/www
 #    rm -rf /var/lib/apt/lists/*
