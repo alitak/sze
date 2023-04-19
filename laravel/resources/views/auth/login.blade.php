@@ -14,10 +14,7 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <h2>
-                {{ route('profile.edit') }}
-            </h2>
-            <x-input-label for="password" :value="__('auth.Password')" />
+            <x-input-label for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
