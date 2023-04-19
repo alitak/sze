@@ -15,9 +15,13 @@ class SessionsController extends Controller
 
     public function store(SessionRequest $request)
     {
-        auth()->attempt($request->validated());
+        if (!auth()->attempt($request->validated())) {
+            return redirect('/login')
+                ->withInput()
+                ->withErrors(['email' => 'Hibás bejelentkezési adatok']);
+        }
 
-        return redirect('/');
+        return redirect('/posts')->with('message', 'Sikeres bejelentkezés');
     }
 
     public function destroy()
