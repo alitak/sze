@@ -130,6 +130,7 @@
       <path value="$PROJECT_DIR$/laravel/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/laravel/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/laravel/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/laravel/vendor/laravel/breeze" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
