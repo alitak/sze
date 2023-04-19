@@ -13,10 +13,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Kukel Attila',
-            'email' => 'kukel.attila@sze.hu',
-            'password' => bcrypt('password'),
+        User::query()
+            ->updateOrCreate([
+                'email' => 'kukel.attila@sze.hu',
+            ], [
+                'name' => 'Kukel Attila',
+                'password' => bcrypt('password'),
+            ]);
+
+        $this->call([
+            CompaniesSeeder::class,
+            JobsSeeder::class,
         ]);
     }
 }
