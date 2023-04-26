@@ -9,10 +9,21 @@ use App\Models\Job;
 
 class JobsController extends Controller
 {
+
     public function index()
     {
+        $jobs = Job::query()
+            ->orderBy('name')
+            ->with(['company'])
+            ->when(
+                auth()->user()->is_company_admin,
+                function ($query) {
+                    $query->where('company_id', auth()->user()->company_id);
+                })
+            ->get();
+
         return view('jobs.index', [
-            'jobs' => Job::query()->orderBy('name')->with(['company'])->get(),
+            'jobs' => $jobs,
         ]);
     }
 
@@ -42,6 +53,8 @@ class JobsController extends Controller
 
     public function show(Job $job)
     {
+        abort_unless(auth()->user()->company_id == $job->company_id, 404);
+
         return view('jobs.show', [
             'job' => $job,
         ]);
@@ -49,6 +62,13 @@ class JobsController extends Controller
 
     public function edit(Job $job)
     {
+        abort_unless(auth()->user()->company_id == $job->company_id, 404);
+//        abort_if(auth()->user()->company_id != $job->company_id, 404);
+
+//        if($job->company_id != auth()->user()->company_id) {
+//            abort(404);
+//        }
+
         return view('jobs.edit', [
             'companies' => Company::query()->orderBy('name')->get(),
             'job' => $job
@@ -57,6 +77,8 @@ class JobsController extends Controller
 
     public function update(JobRequest $request, Job $job)
     {
+        abort_unless(auth()->user()->company_id == $job->company_id, 404);
+
         $job->update($request->validated());
 
         return redirect()->route('jobs.index')->with([
@@ -66,6 +88,8 @@ class JobsController extends Controller
 
     public function destroy(Job $job)
     {
+        abort_unless(auth()->user()->company_id == $job->company_id, 404);
+
         $job->delete();
 
         return redirect()->route('jobs.index')->with([

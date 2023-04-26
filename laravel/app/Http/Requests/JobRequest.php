@@ -20,4 +20,13 @@ class JobRequest extends FormRequest
             'salary' => ['required', 'string', 'max:255'],
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        if(auth()->user()->is_company_admin) {
+            $this->merge([
+                'company_id' => auth()->user()->company_id,
+            ]);
+        }
+    }
 }

@@ -5,6 +5,7 @@
 
             <h1 class="mb-4">Create new job</h1>
 
+            @if(auth()->user()->role === 'admin')
             <div>
                 <x-input-label for="company_id" :value="__('Company')"/>
                 <select name="company_id" id="company_id">
@@ -14,6 +15,7 @@
                 </select>
                 <x-input-error :messages="$errors->get('name')" class="mt-2"/>
             </div>
+            @endif
 
             <div>
                 <x-input-label for="name" :value="__('Name')"/>

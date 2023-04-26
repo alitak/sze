@@ -4,18 +4,20 @@
             @csrf
             @method('PUT')
 
-{{--            <input type="hidden" name="id" value="{{ $job->id }}"></input>--}}
+            {{--            <input type="hidden" name="id" value="{{ $job->id }}"></input>--}}
             <h1 class="mb-4">Edit job</h1>
 
-            <div>
-                <x-input-label for="company_id" :value="__('Company')"/>
-                <select name="company_id" id="company_id">
-                    @foreach($companies as $company)
-                        <option value="{{ $company->id }}" {{ ($company->id == old('company_id', $job->company_id)) ? 'selected' : '' }} >{{ $company->name }}</option>
-                    @endforeach
-                </select>
-                <x-input-error :messages="$errors->get('name')" class="mt-2"/>
-            </div>
+            @if(auth()->user()->role === 'admin')
+                <div>
+                    <x-input-label for="company_id" :value="__('Company')"/>
+                    <select name="company_id" id="company_id">
+                        @foreach($companies as $company)
+                            <option value="{{ $company->id }}" {{ ($company->id == old('company_id', $job->company_id)) ? 'selected' : '' }} >{{ $company->name }}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('name')" class="mt-2"/>
+                </div>
+            @endif
 
             <div>
                 <x-input-label for="name" :value="__('Name')"/>
