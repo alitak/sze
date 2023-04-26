@@ -10,6 +10,8 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
