@@ -32,3 +32,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('t', function () {
+    return \App\Models\Post::factory()->create();
+});
