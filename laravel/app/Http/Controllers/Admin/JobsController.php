@@ -7,6 +7,7 @@ use App\Http\Requests\JobRequest;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class JobsController extends Controller
 {
@@ -92,6 +93,19 @@ class JobsController extends Controller
             , 404);
 
         $validated = $request->validated();
+
+        if (isset($validated['delete_image'])) {
+            $validated['image'] = null;
+            Storage::disk('public')->delete($job->image);
+        }
+
+        if ($request->hasFile('image')) {
+            if ($job->image) {
+                Storage::disk('public')->delete($job->image);
+            }
+
+            $validated['image'] = $request->image->store('jobs', 'public');
+        }
 
         $job->update($validated);
 

@@ -15,6 +15,8 @@ class JobRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'image' => ['nullable', 'image', 'max:1024'],
+            'delete_image' => ['nullable', 'boolean'],
             'company_id' => ['required', 'numeric', Rule::exists('companies', 'id')],
             'tag_ids' => ['nullable', 'array'],
             'tag_ids.*' => ['required', 'numeric', Rule::exists('tags', 'id')],

@@ -1,11 +1,26 @@
 <x-app-layout>
     <main>
-        <form method="POST" action="{{ route('jobs.update', $job) }}" class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <form method="POST"
+              action="{{ route('jobs.update', $job) }}"
+              class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8"
+              enctype="multipart/form-data"
+        >
             @csrf
             @method('PUT')
 
             {{--            <input type="hidden" name="id" value="{{ $job->id }}"></input>--}}
             <h1 class="mb-4">Edit job</h1>
+
+            <div>
+                <x-input-label for="image" :value="__('Image')"/>
+                <input type="file" name="image" class="block mt-1 w-full">
+                <x-input-error :messages="$errors->get('image')" class="mt-2"/>
+                @if ($job->image)
+                    <img src="/storage/{{ $job->image }}" alt="" width="240">
+                    <input type="checkbox" name="delete_image" id="delete_image" value="1">
+                    <label for="delete_image">Kép törlése</label>
+                @endif
+            </div>
 
             @if(auth()->user()->role === 'admin')
                 <div>
