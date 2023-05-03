@@ -35,5 +35,13 @@ require __DIR__.'/auth.php';
 
 
 Route::get('t', function () {
-    return \App\Models\Post::factory()->create();
+    $tag = \App\Models\Tag::find(1);
+    return $tag->jobs;
+
+
+    $job = \App\Models\Job::find(1);
+    return $job->tags;
+
+
+//    return \App\Models\Post::factory()->create();
 });
