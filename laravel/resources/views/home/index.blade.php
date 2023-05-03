@@ -1,6 +1,13 @@
 <x-app-layout>
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <form action="">
+                <input type="text" name="search" placeholder="Search..." value="{{ $search }}">
+            </form>
+            <div>
+                <a href="{{ route('home', ['order' => 'asc']) }}">ASC</a>
+                <a href="{{ route('home', ['order' => 'desc']) }}">DESC</a>
+            </div>
             <ul>
                 @foreach($jobs as $job)
                     <li class="p-3 border-b hover:bg-gray-200 flex items-center">

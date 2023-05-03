@@ -15,10 +15,11 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Company::class)->constrained()->cascadeOnDelete();
-            $table->string('name');
-            // todo tagek
+            $table->string('name')->index();
             $table->string('salary')->nullable();
             $table->timestamps();
+
+//            $table->index('name');
         });
     }
 

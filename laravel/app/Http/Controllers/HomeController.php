@@ -3,16 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
-use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
     public function __invoke()//: View
     {
-//        return (Job::query()->get()->load(['company', 'tags']));
+        $search = request()->search;
+        $order = in_array(request()->order, ['asc', 'desc']) ? request()->order : 'asc';
+
+        $jobs = Job::query()
+            ->where('name', 'LIKE', '%'.$search.'%')
+            ->orWhereHas('company', fn ($query) => $query->where('name', 'LIKE', '%'.$search.'%'))
+            ->orderBy('name', $order)
+            ->get()
+            ->load([
+                'company',
+                'tags',
+            ]);
+
         return view('home.index', [
 //            'jobs' => Job::query()->with(['company'])->get(),
-            'jobs' => Job::query()->get()->load(['company', 'tags']),
+            'jobs' => $jobs,
+            'search' => $search,
         ]);
     }
 }
