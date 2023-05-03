@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
             ], [
                 'role' => UserRoles::ADMIN,
                 'name' => 'Kukel Attila',
-                'password' => bcrypt('password'),
+                'password' => bcrypt('12345'),
             ]);
 
         User::query()
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
                 'role' => UserRoles::COMPANY_ADMIN,
                 'company_id' => Company::query()->whereName('Alitak bt.')->first()->id,
                 'name' => 'Kukel Attila',
-                'password' => bcrypt('password'),
+                'password' => bcrypt('12345'),
             ]);
     }
 }

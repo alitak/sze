@@ -62,7 +62,10 @@ class JobsController extends Controller
 
     public function edit(Job $job)
     {
-        abort_unless(auth()->user()->company_id == $job->company_id, 404);
+        abort_unless(
+            auth()->user()->is_admin ||
+            auth()->user()->company_id == $job->company_id
+            , 404);
 //        abort_if(auth()->user()->company_id != $job->company_id, 404);
 
 //        if($job->company_id != auth()->user()->company_id) {
@@ -77,7 +80,10 @@ class JobsController extends Controller
 
     public function update(JobRequest $request, Job $job)
     {
-        abort_unless(auth()->user()->company_id == $job->company_id, 404);
+        abort_unless(
+            auth()->user()->is_admin ||
+            auth()->user()->company_id == $job->company_id
+            , 404);
 
         $job->update($request->validated());
 
@@ -88,7 +94,10 @@ class JobsController extends Controller
 
     public function destroy(Job $job)
     {
-        abort_unless(auth()->user()->company_id == $job->company_id, 404);
+        abort_unless(
+            auth()->user()->is_admin ||
+            auth()->user()->company_id == $job->company_id
+            , 404);
 
         $job->delete();
 
