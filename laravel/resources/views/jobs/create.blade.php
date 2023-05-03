@@ -18,6 +18,21 @@
             @endif
 
             <div>
+                <x-input-label for="tag_ids" :value="__('Tags')"/>
+                <select name="tag_ids[]" id="tag_ids" multiple>
+                    @foreach($tags as $tag)
+                        <option
+                            value="{{ $tag->id }}"
+                            {{ in_array($tag->id, old('tag_ids', [])) ? 'selected' : '' }}
+                        >
+                            {{ $tag->label }}
+                        </option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('tag_ids')" class="mt-2"/>
+            </div>
+
+            <div>
                 <x-input-label for="name" :value="__('Name')"/>
                 <x-text-input id="name" class="block mt-1 w-full" type="name" name="name" :value="old('name')" required autofocus autocomplete="username"/>
                 <x-input-error :messages="$errors->get('name')" class="mt-2"/>

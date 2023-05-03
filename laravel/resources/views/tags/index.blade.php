@@ -1,8 +1,10 @@
 <x-app-layout>
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl text-blue-700 font-bold text-center">#{{ $tag->label }}</h1>
+            <h2 class="text-2xl text-blue-500 font-bold">JOBS</h2>
             <ul>
-                @foreach($jobs as $job)
+                @foreach($tag->jobs->load(['company', 'tags']) as $job)
                     <li class="p-3 border-b hover:bg-gray-200 flex items-center">
                         <a href="#" class="text-xl font-bold flex items-center">
                             {!! $job->company->logo !!}
@@ -18,7 +20,7 @@
                         <div>
                             @foreach ($job->tags as $tag)
                                 <span class="inline-block rounded border-2 border-primary px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
-                                    <a href="{{ route('tags', $tag->id) }}">
+                                    <a href="{{ route('tags', $tag->id) }}" class="inline-block">
                                         {{ $tag->label }}
                                     </a>
                                 </span>

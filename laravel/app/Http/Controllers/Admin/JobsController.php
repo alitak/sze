@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\JobRequest;
 use App\Models\Company;
 use App\Models\Job;
+use App\Models\Tag;
 
 class JobsController extends Controller
 {
@@ -31,6 +32,7 @@ class JobsController extends Controller
     {
         return view('jobs.create', [
             'companies' => Company::query()->orderBy('name')->get(),
+            'tags' => Tag::query()->orderBy('label')->get(),
         ]);
     }
 
@@ -44,7 +46,10 @@ class JobsController extends Controller
 //        $job->salary = $validated['salary'];
 //        $job->save();
 
-        Job::query()->create($request->validated());
+        $validated = $request->validated();
+        $job = Job::query()->create($validated);
+
+        $job->tags()->sync($validated['tag_ids']);
 
         return redirect()->route('jobs.index')->with([
             'message' => 'Job created successfully',
@@ -74,7 +79,8 @@ class JobsController extends Controller
 
         return view('jobs.edit', [
             'companies' => Company::query()->orderBy('name')->get(),
-            'job' => $job
+            'job' => $job,
+            'tags' => Tag::query()->orderBy('label')->get(),
         ]);
     }
 
@@ -85,7 +91,11 @@ class JobsController extends Controller
             auth()->user()->company_id == $job->company_id
             , 404);
 
-        $job->update($request->validated());
+        $validated = $request->validated();
+
+        $job->update($validated);
+
+        $job->tags()->sync($validated['tag_ids']);
 
         return redirect()->route('jobs.index')->with([
             'message' => 'Job updated successfully',

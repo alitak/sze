@@ -16,14 +16,16 @@ class JobRequest extends FormRequest
     {
         return [
             'company_id' => ['required', 'numeric', Rule::exists('companies', 'id')],
-            'name' => ['required', 'string', 'max:255'],
+            'tag_ids' => ['nullable', 'array'],
+            'tag_ids.*' => ['required', 'numeric', Rule::exists('tags', 'id')],
+            'name' => ['required', 'string', 'min:6', 'max:255'],
             'salary' => ['required', 'string', 'max:255'],
         ];
     }
 
     protected function prepareForValidation()
     {
-        if(auth()->user()->is_company_admin) {
+        if (auth()->user()->is_company_admin) {
             $this->merge([
                 'company_id' => auth()->user()->company_id,
             ]);

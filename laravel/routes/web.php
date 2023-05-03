@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagsController;
 use App\Http\Middleware\CheckAdminCompanyAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('tags/{tag}', TagsController::class)->name('tags');
 
 
 Route::get('t', function () {

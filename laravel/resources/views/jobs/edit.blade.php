@@ -15,9 +15,24 @@
                             <option value="{{ $company->id }}" {{ ($company->id == old('company_id', $job->company_id)) ? 'selected' : '' }} >{{ $company->name }}</option>
                         @endforeach
                     </select>
-                    <x-input-error :messages="$errors->get('name')" class="mt-2"/>
+                    <x-input-error :messages="$errors->get('company_id')" class="mt-2"/>
                 </div>
             @endif
+
+            <div>
+                <x-input-label for="tag_ids" :value="__('Tags')"/>
+                <select name="tag_ids[]" id="tag_ids" multiple>
+                    @foreach($tags as $tag)
+                        <option
+                            value="{{ $tag->id }}"
+                            {{ in_array($tag->id, old('tag_ids', $job->tags->pluck('id')->toArray())) ? 'selected' : '' }}
+                        >
+                            {{ $tag->label }}
+                        </option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('tag_ids')" class="mt-2"/>
+            </div>
 
             <div>
                 <x-input-label for="name" :value="__('Name')"/>
