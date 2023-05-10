@@ -13,7 +13,7 @@
                         <option value="{{ $company->id }}">{{ $company->name }}</option>
                     @endforeach
                 </select>
-                <x-input-error :messages="$errors->get('name')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('company_id')" class="mt-2"/>
             </div>
             @endif
 

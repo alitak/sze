@@ -2,6 +2,7 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/laravel/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/dbal" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/cache" />

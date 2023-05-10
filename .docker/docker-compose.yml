@@ -9,7 +9,7 @@ services:
     ports:
       - "29085:80"
     volumes:
-      - "../laravel:/var/www/"
+      - "../vizsga:/var/www/"
 
   mysql-local:
     image: mariadb:10.9
