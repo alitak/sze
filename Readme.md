@@ -41,7 +41,7 @@ npm run build
 Az .env fájlban a DB_ blokkot be kell állítani:
 ```dotenv
 DB_CONNECTION=mysql
-DB_HOST=mysql-local
+DB_HOST=mysql-sze
 DB_PORT=3306
 DB_DATABASE=sze
 DB_USERNAME=root
