@@ -12,12 +12,6 @@ A projekt forráskódja MIT Licensz alatt kerül kiadásra. Bővebb információ
 
 * Kukel Attila <kukel.attila@sze.hu>
 
-### Konténerbe belépés
-
-```bash
-docker exec -it php-sze bash
-```
-
 ### Laravel rendszer telepítése
 
 ```bash
@@ -25,6 +19,12 @@ git clone git@github.com:alitak/sze.git
 git checkout 2024
 cd .docker
 docker-compose up -d
+```
+
+### Konténerbe belépés
+
+```bash
+docker exec -it php-sze bash
 ```
 
 #### Konténerbe belépés után az alábbi parancsokat kell lefuttatni:
@@ -43,7 +43,7 @@ Az .env fájlban a DB_ blokkot be kell állítani:
 DB_CONNECTION=mysql
 DB_HOST=mysql-sze
 DB_PORT=3306
-DB_DATABASE=sze
+DB_DATABASE=php
 DB_USERNAME=root
 DB_PASSWORD=a
 ```
