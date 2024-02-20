@@ -1,17 +1,9 @@
 <?php
 
-use App\Models\Book;
+use App\Http\Controllers\BooksController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('books', [
-        'books' => Book::query()->get(),
-    ]);
-});
+Route::get('/', [BooksController::class, 'index']);
 
-Route::get('{book}/show', function (Book $book) {
-//    dd($book);
-    return view('show', [
-        'book' => $book,
-    ]);
-});
+Route::get('books', [BooksController::class, 'index']);
+Route::get('books/{book}/show', [BooksController::class, 'show']);

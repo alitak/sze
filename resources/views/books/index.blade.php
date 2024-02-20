@@ -1,7 +1,7 @@
 <ul>
     @foreach ($books as $book)
         <li>
-            <a href="{{ $book->id }}/show">
+            <a href="books/{{ $book->id }}/show">
                 {{ $book->title }}
             </a>
         </li>
