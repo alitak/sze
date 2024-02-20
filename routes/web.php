@@ -9,8 +9,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('{id}/show', function ($id) {
+Route::get('{book}/show', function (Book $book) {
+//    dd($book);
     return view('show', [
-        'book' => Book::query()->where('id', $id)->firstOrFail(),
+        'book' => $book,
     ]);
 });
