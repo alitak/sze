@@ -1,23 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('books', [
-        'books' => DB::table('books')->get(),
+        'books' => Book::query()->get(),
     ]);
 });
 
 Route::get('{id}/show', function ($id) {
-    // SELECT * FROM BOOKS WHERE id=1
-    $book = DB::table('books')->where('id', '=', $id)->first();
-
-    if ($book === null) {
-        abort(404);
-    }
-
     return view('show', [
-        'book' => $book,
+        'book' => Book::query()->where('id', $id)->firstOrFail(),
     ]);
 });
