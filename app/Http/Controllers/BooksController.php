@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use Illuminate\Contracts\View\View;
 
@@ -22,10 +23,10 @@ class BooksController extends Controller
         return view('books.create');
     }
 
-    public function store()
+    public function store(BookRequest $request)
     {
         // formból adatok lekérése
-        $title = request()->title;
+        $title = $request->title;
 
         // adatok mentése
 //        $book = new Book;
@@ -39,7 +40,8 @@ class BooksController extends Controller
         ]);
 
         // visszairányítás
-
+//        return redirect()->back()->with('success', 'Sikeres mentés');
+        return redirect()->route('books.index')->with('success', 'Sikeres mentés');
     }
 
     public function show(Book $book): View
