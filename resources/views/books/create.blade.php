@@ -1,18 +1,28 @@
-<h1>Új könyv</h1>
+@extends('layouts.app')
 
-<form action="{{ route('books.store') }}" method="POST">
-    @csrf
-    <div>
-        <label for="title">Cím</label>
-        <input type="text"
-               name="title" id="title"
-               value="{{ old('title') }}"
-               style="@error('title') border: 1px solid #FF0000; @enderror"
-        >
-        @error('title')
-            <div style="color: #FF0000;">{{ $message }}</div>
-        @enderror
-    </div>
+@section('content')
+    <h2>Új könyv</h2>
 
-    <button type="submit">Mentés</button>
-</form>
+    <form class="row" action="{{ route('books.store') }}" method="POST">
+        @csrf
+        <div class="col-8">
+            <label for="title" class="form-label">Könyv címe</label>
+            <input
+                type="text"
+                class="form-control @error('title')is-invalid @enderror"
+                name="title"
+                id="title"
+                value="{{ old('title') }}"
+            >
+            @error('title')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
+
+        <div class="col-12 mt-3">
+            <button class="btn btn-primary" type="submit">Mentés</button>
+        </div>
+    </form>
+@endsection

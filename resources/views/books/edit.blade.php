@@ -1,19 +1,32 @@
-<h1>Könyv szerkesztése: {{ $book->title }}</h1>
+@extends('layouts.app')
 
-<form action="{{ route('books.update', $book->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-    <div>
-        <label for="title">Cím</label>
-        <input type="text"
-               name="title" id="title"
-               value="{{ old('title', $book->title) }}"
-               style="@error('title') border: 1px solid #FF0000; @enderror"
-        >
-        @error('title')
-        <div style="color: #FF0000;">{{ $message }}</div>
-        @enderror
-    </div>
+@section('content')
+    <h2 class="">
+        Könyv szerkesztése:
+        <span class="text-secondary">{{ $book->title }}</span>
+    </h2>
 
-    <button type="submit">Mentés</button>
-</form>
+    <form class="row" action="{{ route('books.update', $book->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="col-8">
+            <label for="title" class="form-label">Könyv címe</label>
+            <input
+                type="text"
+                class="form-control @error('title')is-invalid @enderror"
+                name="title"
+                id="title"
+                value="{{ old('title', $book->title) }}"
+            >
+            @error('title')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
+
+        <div class="col-12 mt-3">
+            <button class="btn btn-primary" type="submit">Mentés</button>
+        </div>
+    </form>
+@endsection

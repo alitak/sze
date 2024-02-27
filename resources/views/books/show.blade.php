@@ -1,6 +1,8 @@
-<h1>
-{{--    @if ($book !== null)--}}
+@extends('layouts.app')
+
+@section('content')
+    <h2 class="">
         #{{ $book->id }} <br>
         {{ $book->title }}
-{{--    @endif--}}
-</h1>
+    </h2>
+@endsection
