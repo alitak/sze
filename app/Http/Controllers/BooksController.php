@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class BooksController extends Controller
 {
@@ -62,4 +63,11 @@ class BooksController extends Controller
         return redirect()->route('books.index')->with('success', 'Sikeres mentés');
     }
 
+
+    public function destroy(Book $book): RedirectResponse
+    {
+        $book->delete();
+
+        return redirect()->route('books.index')->with('success', 'Sikeres törlés');
+    }
 }
