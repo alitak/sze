@@ -8,15 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-//    protected $table = 'books';
-    public $timestamps = false;
-
-    protected $guarded = [
-        'id',
-    ];
-
-//    protected $fillable = [
-//        'title',
-//    ];
-
+    protected $guarded = ['id'];
 }

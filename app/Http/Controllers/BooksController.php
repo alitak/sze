@@ -8,7 +8,6 @@ use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use Illuminate\Contracts\View\View;
 
-
 class BooksController extends Controller
 {
     public function index(): View
@@ -27,11 +26,6 @@ class BooksController extends Controller
     {
         // formból adatok lekérése
         $title = $request->title;
-
-        // adatok mentése
-//        $book = new Book;
-//        $book->title = $title;
-//        $book->save();
 
         Book::query()->create([
             'title' => $title,
