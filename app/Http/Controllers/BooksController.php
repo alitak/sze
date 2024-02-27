@@ -24,7 +24,6 @@ class BooksController extends Controller
 
     public function store(BookRequest $request)
     {
-        // formból adatok lekérése
         $title = $request->title;
 
         Book::query()->create([
@@ -34,7 +33,6 @@ class BooksController extends Controller
         ]);
 
         // visszairányítás
-//        return redirect()->back()->with('success', 'Sikeres mentés');
         return redirect()->route('books.index')->with('success', 'Sikeres mentés');
     }
 
@@ -44,4 +42,24 @@ class BooksController extends Controller
             'book' => $book,
         ]);
     }
+
+    public function edit(Book $book): View
+    {
+        return view('books.edit', [
+            'book' => $book,
+        ]);
+    }
+
+    public function update(BookRequest $request, Book $book)
+    {
+        $title = $request->title;
+
+        $book->update([
+            'title' => $title,
+        ]);
+
+        // visszairányítás
+        return redirect()->route('books.index')->with('success', 'Sikeres mentés');
+    }
+
 }

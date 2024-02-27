@@ -14,6 +14,10 @@
             <a href="{{ route('books.show', $book->id) }}">
                 {{ $book->title }}
             </a>
+            -
+            <a href="{{ route('books.edit', $book->id) }}">
+                MOD
+            </a>
         </li>
     @endforeach
 </ul>
