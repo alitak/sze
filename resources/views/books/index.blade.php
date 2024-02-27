@@ -18,7 +18,7 @@
             <a href="{{ route('books.edit', $book->id) }}">
                 MOD
             </a>
-            <form action="{{ route('books.delete', $book->id) }}" method="POST">
+            <form action="{{ route('books.destroy', $book->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit">DEL</button>

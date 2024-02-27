@@ -63,7 +63,6 @@ class BooksController extends Controller
         return redirect()->route('books.index')->with('success', 'Sikeres mentés');
     }
 
-
     public function destroy(Book $book): RedirectResponse
     {
         $book->delete();
