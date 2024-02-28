@@ -20,7 +20,7 @@ class BooksController extends Controller
 
     public function create(): View
     {
-        return view('books.create');
+        return view('books.edit');
     }
 
     public function store(BookRequest $request)
@@ -53,11 +53,7 @@ class BooksController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
-        $title = $request->title;
-
-        $book->update([
-            'title' => $title,
-        ]);
+        $book->update($request->validated());
 
         // visszairányítás
         return redirect()->route('books.index')->with('success', 'Sikeres mentés');

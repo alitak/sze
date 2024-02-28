@@ -15,7 +15,9 @@ class BookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'max:255', Rule::unique('books', 'title')],
+            'title'  => ['required', 'max:255', Rule::unique('books', 'title')->ignore($this->route('book')?->id)],
+            'author' => ['nullable', 'max:255'],
+            'year'   => ['nullable', 'integer', 'min:0', 'max:2100'],
         ];
     }
 }
