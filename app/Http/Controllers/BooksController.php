@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
+use App\Models\BookCategory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -33,8 +34,11 @@ class BooksController extends Controller
 
     public function show(Book $book): View
     {
+        $bookCategory = BookCategory::query()->where('id', $book->category_id)->first();
+
         return view('books.show', [
-            'book' => $book,
+            'book'         => $book,
+            'bookCategory' => $bookCategory,
         ]);
     }
 

@@ -18,12 +18,12 @@ class BooksSeeder extends Seeder
         $bookCategories = BookCategory::query()->pluck('id', 'title')->toArray();
         $books = [
             [
-                'book_category_id' => $bookCategories['sci-fi'],
-                'title'            => 'Az alapítvány',
+                'category_id' => $bookCategories['sci-fi'],
+                'title'       => 'Az alapítvány',
             ],
             [
-                'book_category_id' => $bookCategories['sci-fi'],
-                'title'            => 'Hyperion',
+                'category_id' => $bookCategories['sci-fi'],
+                'title'       => 'Hyperion',
             ],
         ];
 
@@ -31,7 +31,7 @@ class BooksSeeder extends Seeder
             Book::query()->firstOrCreate([
                 'title' => $book['title'],
             ], [
-                'book_category_id' => $book['book_category_id'],
+                'category_id' => $book['category_id'],
             ]);
         }
     }
