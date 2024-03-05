@@ -25,13 +25,7 @@ class BooksController extends Controller
 
     public function store(BookRequest $request)
     {
-        $title = $request->title;
-
-        Book::query()->create([
-            'title' => $title,
-            //            'author' => '',
-            //            'year'   => 2000,
-        ]);
+        Book::query()->create($request->validated());
 
         // visszairányítás
         return redirect()->route('books.index')->with('success', 'Sikeres mentés');
