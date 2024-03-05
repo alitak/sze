@@ -10,12 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('book_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('book_category_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('title', 255);
-            $table->string('author', 255)->nullable();
-            $table->year('year')->nullable();
+            $table->string('title');
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('book_categories');
     }
 };
