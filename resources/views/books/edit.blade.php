@@ -12,10 +12,14 @@
 
     <form
         class="row"
-        action="{{ isset($book) ? route('books.update', $book->id) : route('books.create') }}"
-        method="POST">
+        action="{{ isset($book) ? route('books.update', $book->id) : route('books.store') }}"
+        method="POST"
+    >
         @csrf
-        @method('PUT')
+        @if(isset($book))
+            @method('PUT')
+        @endif
+        {{--        @method(isset($book) ? 'PUT' : '')--}}
         <div class="col-8">
             <label for="title" class="form-label">Könyv címe</label>
             <input
