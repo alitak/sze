@@ -16,6 +16,7 @@
         <tr>
             <th>#</th>
             <th>Cím</th>
+            <th>Kategória</th>
             <th>Író</th>
             <th>Év</th>
             <th>&nbsp;</th>
@@ -30,6 +31,7 @@
                         {{ $book->title }}
                     </a>
                 </td>
+                <td>{{ $book->category->title }}</td>
                 <td>{{ $book->author }}</td>
                 <td>{{ $book->year }}</td>
                 <td class="d-flex">

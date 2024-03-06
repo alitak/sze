@@ -14,8 +14,21 @@ class BooksController extends Controller
 {
     public function index(): View
     {
+//        $books = Book::query()->get();
+//        $bookCategories = BookCategory::query()
+//            ->whereIn('id', $books->pluck('category_id'))
+//            ->pluck('title', 'id');
+//
+//        return view('books.index', [
+//            'books'          => $books,
+//            'bookCategories' => $bookCategories,
+//        ]);
+
+//        dd(Book::query()->with('category')->get()->toArray());
+
         return view('books.index', [
-            'books' => Book::query()->get(),
+//            'books' => Book::query()->with('category')->get(),
+            'books' => Book::query()->get()->load('category'),
         ]);
     }
 
