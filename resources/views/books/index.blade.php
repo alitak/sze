@@ -31,7 +31,9 @@
                         {{ $book->title }}
                     </a>
                 </td>
-                <td>{{ $book->category->title }}</td>
+                <td>
+                    {{ $book->category?->title ?? '-'}}
+                </td>
                 <td>{{ $book->author }}</td>
                 <td>{{ $book->year }}</td>
                 <td class="d-flex">

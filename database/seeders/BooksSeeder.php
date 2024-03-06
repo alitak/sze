@@ -34,5 +34,7 @@ class BooksSeeder extends Seeder
                 'category_id' => $book['category_id'],
             ]);
         }
+
+//        Book::factory()->count(10)->create();
     }
 }

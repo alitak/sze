@@ -4,6 +4,6 @@
     <h2 class="">
         #{{ $book->id }} <br>
         {{ $book->title }} <br>
-        {{ $book->category->title }}
+        {{ $book->category?->title }}
     </h2>
 @endsection
