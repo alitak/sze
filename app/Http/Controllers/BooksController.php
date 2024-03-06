@@ -28,13 +28,15 @@ class BooksController extends Controller
 
         return view('books.index', [
 //            'books' => Book::query()->with('category')->get(),
-            'books' => Book::query()->get()->load('category'),
+'books' => Book::query()->get()->load('category'),
         ]);
     }
 
     public function create(): View
     {
-        return view('books.edit');
+        return view('books.edit', [
+            'bookCategories' => BookCategory::query()->pluck('title', 'id'),
+        ]);
     }
 
     public function store(BookRequest $request)
@@ -59,6 +61,7 @@ class BooksController extends Controller
     {
         return view('books.edit', [
             'book' => $book,
+            'bookCategories' => BookCategory::query()->pluck('title', 'id'),
         ]);
     }
 
