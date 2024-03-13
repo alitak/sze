@@ -18,6 +18,31 @@
                             <a class="nav-link" href="{{ route('book-categories.index') }}">Kategóriák</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register.create') }}">Regisztráció</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login.create') }}">Belépés</a>
+                            </li>
+                        @endguest
+
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    {{ auth()->user()->name }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="nav-link">Kilépés</button>
+                                </form>
+                            </li>
+                        @endauth
+                    </ul>
                     {{--            <form class="d-flex" role="search">--}}
                     {{--                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--}}
                     {{--                <button class="btn btn-outline-success" type="submit">Search</button>--}}
