@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\BookCategoriesController;
-use App\Http\Controllers\BooksController;
+use App\Http\Controllers\Admin\BookCategoriesController;
+use App\Http\Controllers\Admin\BooksController;
+use App\Http\Middleware\IsAdmin;
 use App\Models\Book;
 use App\Models\BookCategory;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,14 @@ Route::get('/', [BooksController::class, 'index'])->name('home');
 //
 //Route::delete('logout', [SessionsController::class, 'destroy'])->name('logout');
 
-Route::resource('books', BooksController::class);
-Route::resource('book-categories', BookCategoriesController::class);
+Route::group([
+    'middleware' => [IsAdmin::class],
+    'prefix'     => 'admin',
+    'as'         => 'admin.',
+], static function () {
+    Route::resource('books', BooksController::class);
+    Route::resource('book-categories', BookCategoriesController::class);
+});
 
 Route::get('t', function () {
     $category = BookCategory::factory()->create();

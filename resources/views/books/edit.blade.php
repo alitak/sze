@@ -12,7 +12,7 @@
 
     <form
             class="row"
-            action="{{ isset($book) ? route('books.update', $book->id) : route('books.store') }}"
+            action="{{ isset($book) ? route('admin.books.update', $book->id) : route('admin.books.store') }}"
             method="POST"
     >
         @csrf

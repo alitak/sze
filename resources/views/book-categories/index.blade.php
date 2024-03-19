@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        <a class="btn btn-primary" href="{{ route('book-categories.create') }}">Új kategória</a>
+        <a class="btn btn-primary" href="{{ route('admin.book-categories.create') }}">Új kategória</a>
     </div>
 
     @if (session('success'))
@@ -24,13 +24,13 @@
             <tr>
                 <td>{{ $bookCategory->id }}</td>
                 <td>
-                    <a class="text-decoration-none d-block" href="{{ route('book-categories.show', $bookCategory->id) }}">
+                    <a class="text-decoration-none d-block" href="{{ route('admin.book-categories.show', $bookCategory->id) }}">
                         {{ $bookCategory->title }}
                     </a>
                 </td>
                 <td class="d-flex">
-                    <form class="ms-auto btn-group" action="{{ route('book-categories.destroy', $bookCategory->id) }}" method="POST">
-                        <a class="btn btn-sm btn-secondary" href="{{ route('book-categories.edit', $bookCategory->id) }}">
+                    <form class="ms-auto btn-group" action="{{ route('admin.book-categories.destroy', $bookCategory->id) }}" method="POST">
+                        <a class="btn btn-sm btn-secondary" href="{{ route('admin.book-categories.edit', $bookCategory->id) }}">
                             MOD
                         </a>
                         @csrf

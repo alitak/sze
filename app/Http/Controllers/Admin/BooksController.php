@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\BookCategory;
@@ -12,28 +13,24 @@ use Illuminate\Http\RedirectResponse;
 
 class BooksController extends Controller
 {
+    public function __construct()
+    {
+//        $this->middleware(IsAdmin::class);
+    }
+
     public function index(): View
     {
-//        $books = Book::query()->get();
-//        $bookCategories = BookCategory::query()
-//            ->whereIn('id', $books->pluck('category_id'))
-//            ->pluck('title', 'id');
-//
-//        return view('books.index', [
-//            'books'          => $books,
-//            'bookCategories' => $bookCategories,
-//        ]);
-
-//        dd(Book::query()->with('category')->get()->toArray());
+//        abort_unless(auth()->user()?->is_admin, 404);
 
         return view('books.index', [
-//            'books' => Book::query()->with('category')->get(),
-'books' => Book::query()->get()->load('category'),
+            'books' => Book::query()->get()->load('category'),
         ]);
     }
 
     public function create(): View
     {
+//        abort_unless(auth()->user()?->is_admin, 404);
+
         return view('books.edit', [
             'bookCategories' => BookCategory::query()->pluck('title', 'id'),
         ]);
@@ -60,7 +57,7 @@ class BooksController extends Controller
     public function edit(Book $book): View
     {
         return view('books.edit', [
-            'book' => $book,
+            'book'           => $book,
             'bookCategories' => BookCategory::query()->pluck('title', 'id'),
         ]);
     }

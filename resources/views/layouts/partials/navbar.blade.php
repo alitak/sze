@@ -15,7 +15,7 @@
                             <a class="nav-link" href="{{ route('books.index') }}">Könyvek</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('book-categories.index') }}">Kategóriák</a>
+                            <a class="nav-link" href="{{ route('admin.book-categories.index') }}">Kategóriák</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0">

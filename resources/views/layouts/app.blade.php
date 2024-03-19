@@ -31,15 +31,23 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('books.index') }}">{{ __('Books') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('book-categories.index') }}">{{ __('Book categories') }}</a>
+                        <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                     </li>
                 </ul>
+                @if(auth()->user()?->is_admin)
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('admin.books.index') }}">{{ __('Books') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.book-categories.index') }}">{{ __('Book categories') }}</a></li>
+                        </ul>
+                    </div>
+                @endif
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ml-4">
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
