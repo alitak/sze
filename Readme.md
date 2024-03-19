@@ -18,6 +18,7 @@ A szerverre való csatlakozás opcionális, valamint nem csak a PHP tárggyal ka
 ## Ajánlott videósorozatok
 * [PHP for beginners](https://laracasts.com/series/php-for-beginners-2023-edition)
 * [Laravel 8 from scratch](https://laracasts.com/series/laravel-8-from-scratch)
+* [30 Days to Learn Laravel](https://laracasts.com/series/30-days-to-learn-laravel-11)
 
 Mindkettő előfizetés nélkül megtekinthető, erősen ajánlott az órai ismeretek kibővítésére!
 
