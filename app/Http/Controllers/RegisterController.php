@@ -15,13 +15,8 @@ class RegisterController extends Controller
 
     public function store(RegisterRequest $request)
     {
-        $validated = $request->validated();
-        $user = User::query()->create([
-            'name'     => $validated['name'],
-            'email'    => $validated['email'],
-            'password' => bcrypt($validated['password']),
-        ]);
-//dd($user->created_at);
+        $user = User::query()->create($request->validated());
+
         return redirect()->route('books.index')->with('success', 'Sikeres regisztráció');
     }
 }
