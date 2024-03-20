@@ -13,7 +13,7 @@ class BookCategoriesController extends Controller
 {
     public function index(): View
     {
-        return view('book-categories.index', [
+        return view('admin.book-categories.index', [
                 'bookCategories' => BookCategory::all(),
             ]
         );
@@ -21,7 +21,7 @@ class BookCategoriesController extends Controller
 
     public function create(): View
     {
-        return view('book-categories.edit');
+        return view('admin.book-categories.edit');
     }
 
     public function store(StoreBookCategoryRequest $request): RedirectResponse
@@ -34,14 +34,14 @@ class BookCategoriesController extends Controller
 
     public function show(BookCategory $bookCategory): View
     {
-        return view('book-categories.show', [
+        return view('admin.book-categories.show', [
             'bookCategory' => $bookCategory,
         ]);
     }
 
     public function edit(BookCategory $bookCategory)
     {
-        return view('book-categories.edit', [
+        return view('admin.book-categories.edit', [
             'bookCategory' => $bookCategory,
         ]);
     }

@@ -22,7 +22,7 @@ class BooksController extends Controller
     {
 //        abort_unless(auth()->user()?->is_admin, 404);
 
-        return view('books.index', [
+        return view('admin.books.index', [
             'books' => Book::query()->get()->load('category'),
         ]);
     }
@@ -31,7 +31,7 @@ class BooksController extends Controller
     {
 //        abort_unless(auth()->user()?->is_admin, 404);
 
-        return view('books.edit', [
+        return view('admin.books.edit', [
             'bookCategories' => BookCategory::query()->pluck('title', 'id'),
         ]);
     }
@@ -48,7 +48,7 @@ class BooksController extends Controller
     {
         $bookCategory = BookCategory::query()->where('id', $book->category_id)->first();
 
-        return view('books.show', [
+        return view('admin.books.show', [
             'book'         => $book,
             'bookCategory' => $bookCategory,
         ]);
@@ -56,7 +56,7 @@ class BooksController extends Controller
 
     public function edit(Book $book): View
     {
-        return view('books.edit', [
+        return view('admin.books.edit', [
             'book'           => $book,
             'bookCategories' => BookCategory::query()->pluck('title', 'id'),
         ]);
