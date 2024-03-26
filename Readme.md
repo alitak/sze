@@ -47,3 +47,7 @@ DB_DATABASE=php
 DB_USERNAME=root
 DB_PASSWORD=a
 ```
+
+
+#### Könyv CSV importáláshoz
+[Books.csv](https://github.com/zygmuntz/goodbooks-10k/blob/master/samples/books.csv)
