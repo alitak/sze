@@ -36,10 +36,12 @@ class ImportBooksController extends Controller
         $books = [];
         while ($row = fgetcsv($csvFile)) {
             $books[] = [
-                'title'       => $row[$columns['title']],
-                'author'      => $row[$columns['authors']],
-                'category_id' => $bookCategories->random(1)[0],//BookCategory::query()->inRandomOrder()->first('id')->id,
-                'year'        => $row[$columns['original_publication_year']] === '' ? null : $row[$columns['original_publication_year']],
+                'title'           => $row[$columns['title']],
+                'author'          => $row[$columns['authors']],
+                'category_id'     => $bookCategories->random(1)[0],//BookCategory::query()->inRandomOrder()->first('id')->id,
+                'year'            => $row[$columns['original_publication_year']] === '' ? null : $row[$columns['original_publication_year']],
+                'image_url'       => $row[$columns['image_url']],
+                'small_image_url' => $row[$columns['small_image_url']],
             ];
         }
         foreach (collect($books)->chunk(500) as $chunk) {

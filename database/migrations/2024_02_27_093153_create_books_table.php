@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->string('title', 255)->index();
             $table->text('author')->nullable();
             $table->smallInteger('year')->nullable();
+            $table->string('image_url')->nullable();
+            $table->string('small_image_url')->nullable();
             $table->timestamps();
 
             $table->unique(['title', 'author']);
