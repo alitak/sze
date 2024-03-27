@@ -23,7 +23,9 @@ class BooksController extends Controller
 //        abort_unless(auth()->user()?->is_admin, 404);
 
         return view('admin.books.index', [
-            'books' => Book::query()->get()->load('category'),
+            'books' => Book::query()
+                ->with('category')
+                ->paginate(5)
         ]);
     }
 
