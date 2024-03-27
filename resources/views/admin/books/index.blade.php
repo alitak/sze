@@ -3,6 +3,7 @@
 @section('content')
     <div>
         <a class="btn btn-primary" href="{{ route('admin.books.create') }}">Új könyv</a>
+        <a class="btn btn-secondary" href="{{ route('admin.import-books.index') }}">Importálás</a>
     </div>
 
     @if (session('success'))

@@ -11,8 +11,11 @@ services:
             - "5173:5173"
         expose:
             - 5173
+        environment:
+            upload_max_filesize: 64M
         volumes:
             - "..:/var/www/"
+            - "./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
 
     mysql-sze:
         image: mariadb:10.9
