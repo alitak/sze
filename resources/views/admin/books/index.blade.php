@@ -15,8 +15,36 @@
     <table class="table table-striped table-hover">
         <thead>
         <tr>
+            <form action="" method="GET">
+                <th></th>
+                <th>
+                    <input type="text" name="title" class="form-control" value="{{ request()->title }}">
+                </th>
+                <th>
+                    <select class="form-select" name="category" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        @foreach($categories as $id => $title)
+                            <option value="{{ $id }}">{{ $title }}</option>
+                        @endforeach
+                    </select>
+                </th>
+                <th>
+                    <input type="text" name="author" class="form-control">
+                </th>
+                <th>
+                    <div class="d-flex">
+                        <input type="number" name="year[from]" class="form-control w-25"> -
+                        <input type="number" name="year[to]" class="form-control w-25">
+                    </div>
+                </th>
+                <th>
+                    <button class="btn btn-sm btn-outline-secondary" type="submit">Keresés</button>
+                </th>
+            </form>
+        </tr>
+        <tr>
             <th>#</th>
-            <th>Cím</th>
+            <th style="width: 100%">Cím</th>
             <th>Kategória</th>
             <th>Író</th>
             <th>Év</th>
@@ -24,7 +52,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($books as $book)
+        @forelse($books as $book)
             <tr>
                 <td>{{ $book->id }}</td>
                 <td>
@@ -35,9 +63,9 @@
                 <td>
                     {{ $book->category?->title ?? '-'}}
                 </td>
-                <td>{{ $book->author }}</td>
+                <td class="text-nowrap">{{ $book->author }}</td>
                 <td>{{ $book->year }}</td>
-                <td class="d-flex">
+                <td class="">
                     <form class="ms-auto btn-group" action="{{ route('admin.books.destroy', $book->id) }}" method="POST">
                         <a class="btn btn-sm btn-secondary" href="{{ route('admin.books.edit', $book->id) }}">
                             MOD
@@ -48,7 +76,13 @@
                     </form>
                 </td>
             </tr>
-        @endforeach
+        @empty
+           <tr>
+               <td colspan="6">
+                   Nincs találat
+               </td>
+           </tr>
+        @endforelse
         </tbody>
     </table>
 

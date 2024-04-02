@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('category_id')->nullable()->constrained('book_categories')->nullOnDelete();
             $table->string('title', 255)->index();
-            $table->text('author')->nullable();
-            $table->smallInteger('year')->nullable();
+            $table->text('author')->index()->nullable();
+            $table->smallInteger('year')->index()->nullable();
             $table->string('image_url')->nullable();
             $table->string('small_image_url')->nullable();
             $table->timestamps();
