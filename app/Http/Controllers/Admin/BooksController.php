@@ -9,7 +9,6 @@ use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\BookCategory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -17,31 +16,22 @@ class BooksController extends Controller
 {
     public function index(Request $request): View
     {
+//        $books = Book::query()
+//            // where (title LIKE "%great Brain%" OR title LIKE "%great%" OR title LIKE "%Brain%)"
+//            ->where(function (Builder $query) {
+//                $query
+//                    ->where('title', 'LIKE', '%great Brain%')
+//                    ->orWhere('title', 'LIKE', '%great%')
+//                    ->orWhere('title', 'LIKE', '%Brain%');
+//            })
+//            ->where('category_id', 5)
+////            ->dd()
+//            ->paginate(5)
+//            ->withQueryString()
+//            //            ->toRawSql()
+//        ;
         return view('admin.books.index', [
-            'books'      => Book::query()
-                ->with('category')
-                ->when(
-                    $request->title,
-                    function (Builder $query, string $title) {
-                        // where (title LIKE "%great Brain%" OR title LIKE "%great%" OR title LIKE "%Brain%)"
-                        $query
-                            ->where('title', 'LIKE', '%' . $title . '%')
-                            ->when(
-                                str_contains($title, ' '),
-                                function (Builder $query) use ($title) {
-                                    foreach (explode(' ', $title) as $search) {
-                                        $query->orWhere('title', 'LIKE', '%' . $search . '%');
-                                    }
-                                }
-                            )
-                        ;
-                    })
-                ->when(
-                    $request->category,
-                    fn (Builder $query, $categoryId) => $query->where('category_id', $categoryId),
-                )
-                ->paginate(5)
-                ->withQueryString(),
+            'books'      => Book::query()->with('category')->search($request)->paginate(5)->withQueryString(),
             'categories' => BookCategory::query()->orderBy('title')->pluck('title', 'id'),
         ]);
     }

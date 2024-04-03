@@ -22,9 +22,10 @@
                 </th>
                 <th>
                     <select class="form-select" name="category" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
+                        <option value="">Open this select menu</option>
                         @foreach($categories as $id => $title)
-                            <option value="{{ $id }}">{{ $title }}</option>
+                            {{--                            <option value="{{ $id }}" @if (request()->category == $id) selected @endif>{{ $title }}</option>--}}
+                            <option value="{{ $id }}" {{ request()->category == $id ? 'selected' : '' }}>{{ $title }}</option>
                         @endforeach
                     </select>
                 </th>
@@ -33,8 +34,8 @@
                 </th>
                 <th>
                     <div class="d-flex">
-                        <input type="number" name="year[from]" class="form-control w-25"> -
-                        <input type="number" name="year[to]" class="form-control w-25">
+                        <input type="number" name="year[from]" class="form-control" style="width: 75px" value="{{ request()->year['from'] }}"> -
+                        <input type="number" name="year[to]" class="form-control" style="width: 75px" value="{{ request()->year['to'] }}">
                     </div>
                 </th>
                 <th>
@@ -77,11 +78,11 @@
                 </td>
             </tr>
         @empty
-           <tr>
-               <td colspan="6">
-                   Nincs találat
-               </td>
-           </tr>
+            <tr>
+                <td colspan="6">
+                    Nincs találat
+                </td>
+            </tr>
         @endforelse
         </tbody>
     </table>
