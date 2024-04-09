@@ -34,8 +34,8 @@
                 </th>
                 <th>
                     <div class="d-flex">
-                        <input type="number" name="year[from]" class="form-control" style="width: 75px" value="{{ request()->year['from'] }}"> -
-                        <input type="number" name="year[to]" class="form-control" style="width: 75px" value="{{ request()->year['to'] }}">
+                        <input type="number" name="year[from]" class="form-control" style="width: 75px" value="{{ request()->year && request()->year['from'] }}"> -
+                        <input type="number" name="year[to]" class="form-control" style="width: 75px" value="{{ request()->year && request()->year['to'] }}">
                     </div>
                 </th>
                 <th>
@@ -45,7 +45,15 @@
         </tr>
         <tr>
             <th>#</th>
-            <th style="width: 100%">Cím</th>
+            <th style="width: 100%">
+                Cím
+                <a class="text-decoration-none text-dark" href="{{ url()->current() . '?' . http_build_query([...request()->all(), 'order' => 'title', 'direction' => 'desc']) }}">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+                <a class="text-decoration-none text-dark" href="{{ url()->current() . '?' . http_build_query([...request()->all(), 'order' => 'title', 'direction' => 'asc']) }}">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+            </th>
             <th>Kategória</th>
             <th>Író</th>
             <th>Év</th>

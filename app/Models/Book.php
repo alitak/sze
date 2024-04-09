@@ -47,12 +47,12 @@ class Book extends Model
                 function (Builder $query, string $title) {
                     // where (title LIKE "%great Brain%" OR title LIKE "%great%" OR title LIKE "%Brain%)"
                     $query->where(function (Builder $query) use ($title) {
-                        return $query->where('title', 'LIKE', '%' . $title . '%')
+                        return $query->where('books.title', 'LIKE', '%' . $title . '%')
                             ->when(
                                 str_contains($title, ' '),
                                 function (Builder $query) use ($title) {
                                     foreach (explode(' ', $title) as $search) {
-                                        $query->orWhere('title', 'LIKE', '%' . $search . '%');
+                                        $query->orWhere('books.title', 'LIKE', '%' . $search . '%');
                                     }
                                 }
                             );
@@ -63,7 +63,7 @@ class Book extends Model
                 fn (Builder $query, $categoryId) => $query->where('category_id', $categoryId),
             )
             ->when(
-                $request->year['from'] && $request->year['to'],
+                $request->year && $request->year['from'] && $request->year['to'],
                 fn (Builder $query) => $query->whereBetween('year', $request->year)
 //                ->where('year', '>=', $request->year['from'])
 //                ->where('year', '<=', $request->year['to'])
