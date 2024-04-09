@@ -31,7 +31,7 @@ class BooksController extends Controller
 //            //            ->toRawSql()
 //        ;
         return view('admin.books.index', [
-            'books'      => Book::query()->with('category')->search($request)->paginate(5)->withQueryString(),
+            'books'      => Book::query()->with('category')->searchForAdmin($request)->paginate(5)->withQueryString(),
             'categories' => BookCategory::query()->orderBy('title')->pluck('title', 'id'),
         ]);
     }

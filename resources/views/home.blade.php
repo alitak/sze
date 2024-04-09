@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="row">
+        <form action="">
+            <input type="text" name="term" class="form-control" value="{{ request()->term }}">
+            <button class="btn btn-sm btn-outline-secondary" type="submit">Keresés</button>
+        </form>
         @foreach ($latestBooks as $book)
             <div class="col-2">
                 <div class="card">

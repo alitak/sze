@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
+use Laravel\Scout\Searchable;
 
 class Book extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $guarded = ['id'];
 
@@ -19,13 +22,24 @@ class Book extends Model
         'category',
     ];
 
+    public function toSearchableArray(): array
+    {
+        return [
+            'title' => $this->title,
+        ];
+    }
+
+    public static function makeAllSearchable()
+    {
+        self::makeAllSearchable();
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(BookCategory::class);
     }
 
-
-    public function scopeSearch(Builder $query, \Illuminate\Http\Request $request)
+    public function scopeSearchForAdmin(Builder $query, Request $request)
     {
         return $query
             ->when(
