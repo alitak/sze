@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Traits\ImageUpload;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\BookCategory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Drivers\Gd\Driver;
-use Intervention\Image\ImageManager;
 
 class BooksController extends Controller
 {
+    use ImageUpload;
+
     public function index(Request $request): View
     {
 //        dump($request->all());
@@ -85,21 +87,9 @@ class BooksController extends Controller
         ]);
     }
 
-    public function store(BookRequest $request)
+    public function store(BookRequest $request): RedirectResponse
     {
-//        $imagePath = $request->file('image')->store('images', ['disk' => 'public']);
-        $validated = $request->validated();
-
-        if ($request->has('image')) {
-            $imagePath = $request->file('image')?->store('', ['disk' => 'images']);
-            $validated['image_url'] = $imagePath;
-            unset($validated['image']);
-
-            $manager = new ImageManager(new Driver());
-            $image = $manager->read(Storage::disk('images')->path($imagePath));
-            $image->scale(width: 500);
-            $image->save();
-        }
+        $validated = $this->getValidated($request);
 
         Book::query()->create($validated);
 
@@ -127,27 +117,18 @@ class BooksController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
-        $validated = $request->validated();
+        $validated = $this->getValidated($request);
 
         if ($request->has('image')) {
             if ($book->image_url) {
                 Storage::disk('images')->delete($book->image_url);
             }
-
-            $imagePath = $request->file('image')?->store('', ['disk' => 'images']);
-            $validated['image_url'] = $imagePath;
-            unset($validated['image']);
-
-            $manager = new ImageManager(new Driver());
-            $image = $manager->read(Storage::disk('images')->path($imagePath));
-            $image->scale(width: 500);
-            $image->save();
         }
 
         $book->update($validated);
 
         // visszairányítás
-//        return redirect()->route('admin.books.index')->with('success', 'Sikeres mentés');
+        return redirect()->route('admin.books.index')->with('success', 'Sikeres mentés');
     }
 
     public function destroy(Book $book)//: RedirectResponse
@@ -160,4 +141,5 @@ class BooksController extends Controller
 
         return redirect()->route('admin.books.index')->with('success', 'Sikeres törlés');
     }
+
 }
