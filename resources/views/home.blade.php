@@ -7,10 +7,10 @@
             <button class="btn btn-sm btn-outline-secondary" type="submit">Keresés</button>
         </form>
         @foreach ($latestBooks as $book)
-            <div class="col-2">
+            <div class="col-3">
                 <div class="card">
 {{--                    <img src="https://placedog.net/500/280" class="card-img-top" alt="{{ $book->title }}">--}}
-                    <img src="{{ $book->image_url }}" class="card-img-top" alt="{{ $book->title }}">
+                    <img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}">
                     <div class="card-body">
                         <h5 class="card-title">
                             {{ $book->title }}

@@ -10,6 +10,7 @@
         "barryvdh/laravel-debugbar": "^3.10",
         "barryvdh/laravel-ide-helper": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^3.5",
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.8",

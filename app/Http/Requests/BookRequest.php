@@ -7,11 +7,6 @@ use Illuminate\Validation\Rule;
 
 class BookRequest extends FormRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     public function rules(): array
     {
         return [
@@ -19,6 +14,7 @@ class BookRequest extends FormRequest
             'title'       => ['required', 'max:255', Rule::unique('books', 'title')->ignore($this->route('book')?->id)],
             'author'      => ['nullable', 'max:255'],
             'year'        => ['nullable', 'integer', 'min:0', 'max:2100'],
+            'image'       => ['nullable', 'image', 'max:1024'],
         ];
     }
 }

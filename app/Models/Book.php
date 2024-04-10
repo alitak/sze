@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 
 class Book extends Model
@@ -68,6 +71,15 @@ class Book extends Model
 //                ->where('year', '>=', $request->year['from'])
 //                ->where('year', '<=', $request->year['to'])
             );
+    }
+
+    public function image(): Attribute
+    {
+        return Attribute::get(
+            fn (): string => (Str::startsWith($this->image_url, 'http')
+                ? $this->image_url
+                : Storage::disk('images')->url($this->image_url))
+        );
     }
 
 }

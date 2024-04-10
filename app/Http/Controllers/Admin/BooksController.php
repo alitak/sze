@@ -9,8 +9,10 @@ use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\BookCategory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class BooksController extends Controller
 {
@@ -85,10 +87,24 @@ class BooksController extends Controller
 
     public function store(BookRequest $request)
     {
-        Book::query()->create($request->validated());
+//        $imagePath = $request->file('image')->store('images', ['disk' => 'public']);
+        $validated = $request->validated();
+
+        if ($request->has('image')) {
+            $imagePath = $request->file('image')?->store('', ['disk' => 'images']);
+            $validated['image_url'] = $imagePath;
+            unset($validated['image']);
+
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read(Storage::disk('images')->path($imagePath));
+            $image->scale(width: 500);
+            $image->save();
+        }
+
+        Book::query()->create($validated);
 
         // visszairányítás
-        return redirect()->route('books.index')->with('success', 'Sikeres mentés');
+        return redirect()->route('admin.books.index')->with('success', 'Sikeres mentés');
     }
 
     public function show(Book $book): View
@@ -111,16 +127,37 @@ class BooksController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
-        $book->update($request->validated());
+        $validated = $request->validated();
+
+        if ($request->has('image')) {
+            if ($book->image_url) {
+                Storage::disk('images')->delete($book->image_url);
+            }
+
+            $imagePath = $request->file('image')?->store('', ['disk' => 'images']);
+            $validated['image_url'] = $imagePath;
+            unset($validated['image']);
+
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read(Storage::disk('images')->path($imagePath));
+            $image->scale(width: 500);
+            $image->save();
+        }
+
+        $book->update($validated);
 
         // visszairányítás
-        return redirect()->route('books.index')->with('success', 'Sikeres mentés');
+//        return redirect()->route('admin.books.index')->with('success', 'Sikeres mentés');
     }
 
-    public function destroy(Book $book): RedirectResponse
+    public function destroy(Book $book)//: RedirectResponse
     {
+        if ($book->image_url) {
+            Storage::disk('images')->delete($book->image_url);
+        }
+
         $book->delete();
 
-        return redirect()->route('books.index')->with('success', 'Sikeres törlés');
+        return redirect()->route('admin.books.index')->with('success', 'Sikeres törlés');
     }
 }
