@@ -115,7 +115,7 @@ class BooksController extends Controller
         ]);
     }
 
-    public function update(BookRequest $request, Book $book)
+    public function update(BookRequest $request, Book $book): RedirectResponse
     {
         $validated = $this->getValidated($request);
 
@@ -123,6 +123,11 @@ class BooksController extends Controller
             if ($book->image_url) {
                 Storage::disk('images')->delete($book->image_url);
             }
+        }
+
+        if (isset($validated['delete-image'])) {
+            Storage::disk('images')->delete($book->image_url);
+            $validated['image_url'] = null;
         }
 
         $book->update($validated);

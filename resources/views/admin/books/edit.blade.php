@@ -91,6 +91,10 @@
 
         <div class="col-8">
             <label for="csv" class="form-label">Borítókép</label>
+            @if (isset($book) && $book->image)
+                <input type="checkbox" name="delete-image" id="delete-image" value="1">
+                <label for="delete-image" class="form-label">Borítókép törlése</label>
+            @endif
             <input
                 type="file"
                 class="form-control @error('image')is-invalid @enderror"

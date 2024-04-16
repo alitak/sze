@@ -78,7 +78,7 @@ class Book extends Model
         return Attribute::get(
             fn (): string => (Str::startsWith($this->image_url, 'http')
                 ? $this->image_url
-                : Storage::disk('images')->url($this->image_url))
+                : ($this->image_url ? Storage::disk('images')->url($this->image_url) : ''))
         );
     }
 
