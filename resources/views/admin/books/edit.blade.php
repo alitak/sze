@@ -11,10 +11,10 @@
     </h2>
 
     <form
-        class="row"
-        action="{{ isset($book) ? route('admin.books.update', $book->id) : route('admin.books.store') }}"
-        method="POST"
-        enctype="multipart/form-data"
+            class="row"
+            action="{{ isset($book) ? route('admin.books.update', $book->id) : route('admin.books.store') }}"
+            method="POST"
+            enctype="multipart/form-data"
     >
         @csrf
         @if(isset($book))
@@ -24,11 +24,11 @@
         <div class="col-8">
             <label for="title" class="form-label">Könyv címe</label>
             <input
-                type="text"
-                class="form-control @error('title')is-invalid @enderror"
-                name="title"
-                id="title"
-                value="{{ old('title', isset($book) ? $book->title : '') }}"
+                    type="text"
+                    class="form-control @error('title')is-invalid @enderror"
+                    name="title"
+                    id="title"
+                    value="{{ old('title', isset($book) ? $book->title : '') }}"
             >
             @error('title')
             <div class="invalid-feedback">
@@ -43,8 +43,8 @@
                 <option value="">Nincs kategória</option>
                 @foreach($bookCategories as $bookCategoryId => $bookCategoryTitle)
                     <option
-                        value="{{ $bookCategoryId }}"
-                        @if ($bookCategoryId === isset($book) ? $book->category_id : null) selected @endif
+                            value="{{ $bookCategoryId }}"
+                            @if ($bookCategoryId === isset($book) ? $book->category_id : null) selected @endif
                     >{{ $bookCategoryTitle }}</option>
                 @endforeach
             </select>
@@ -58,11 +58,11 @@
         <div class="col-8">
             <label for="author" class="form-label">`"Y'ró</label>
             <input
-                type="text"
-                class="form-control @error('author')is-invalid @enderror"
-                name="author"
-                id="author"
-                value="{{ old('author', isset($book) ? $book->author : '') }}"
+                    type="text"
+                    class="form-control @error('author')is-invalid @enderror"
+                    name="author"
+                    id="author"
+                    value="{{ old('author', isset($book) ? $book->author : '') }}"
             >
             @error('author')
             <div class="invalid-feedback">
@@ -74,13 +74,13 @@
         <div class="col-8">
             <label for="year" class="form-label">Év</label>
             <input
-                type="number"
-                min="0"
-                max="2100"
-                class="form-control @error('year')is-invalid @enderror"
-                name="year"
-                id="year"
-                value="{{ old('year', isset($book) ? $book->year : '') }}"
+                    type="number"
+                    min="0"
+                    max="2100"
+                    class="form-control @error('year')is-invalid @enderror"
+                    name="year"
+                    id="year"
+                    value="{{ old('year', isset($book) ? $book->year : '') }}"
             >
             @error('year')
             <div class="invalid-feedback">
@@ -96,14 +96,24 @@
                 <label for="delete-image" class="form-label">Borítókép törlése</label>
             @endif
             <input
-                type="file"
-                class="form-control @error('image')is-invalid @enderror"
-                name="image"
-                id="image"
-                value="{{ old('image', isset($book) ? $book->image : '') }}"
+                    type="file"
+                    class="form-control @error('image')is-invalid @enderror"
+                    name="image"
+                    id="image"
+                    value="{{ old('image', isset($book) ? $book->image : '') }}"
             >
-            @if (isset($book))
-                <img src="{{ $book->image }}" alt="" style="width: 150px;">
+            @if (isset($book) && $book->image)
+                <div style="position: relative;" id="bookImageWrapper" >
+                    <a
+                            onclick="event.preventDefault();deleteImageAjax({{ $book->id }})"
+                            href="#"
+                            id="delete-image-ajax"
+                            class="text-danger text-decoration-none font-weight-bold"
+                            style="position: absolute; top: 10px; left: 10px; background-color: white; padding: 5px;">
+                        <i class="fas fa-times"></i>
+                    </a>
+                    <img src="{{ $book->image }}" alt="" style="width: 150px;">
+                </div>
             @endif
             @error('image')
             <div class="invalid-feedback">
