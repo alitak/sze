@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\HomeController;
 use App\Models\Book;
 use App\Models\BookCategory;
@@ -12,6 +13,8 @@ Auth::routes();
 Route::get('/', HomeController::class)->name('home');
 
 Route::get('books/{book}/show', [BooksController::class, 'show'])->name('books.show');
+
+Route::resource('comments', CommentsController::class)->only(['store']);
 
 Route::get('t', function () {
     $category = BookCategory::factory()->create();

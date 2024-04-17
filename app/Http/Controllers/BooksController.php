@@ -16,7 +16,8 @@ class BooksController extends Controller
     public function show(Book $book): View
     {
         return view('books.show', [
-            'book' => $book,
+            'book'     => $book,
+            'comments' => $book->comments()->paginate(1),
         ]);
     }
 }
