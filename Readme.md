@@ -4,8 +4,9 @@
 * **Kukel Attila**
 
 ## Félévek
-* [2023 tavasz](https://github.com/alitak/sze/tree/2023)
+* [2025 tavasz](https://github.com/alitak/sze/tree/2025)
 * [2024 tavasz](https://github.com/alitak/sze/tree/2024)
+* [2023 tavasz](https://github.com/alitak/sze/tree/2023)
 
 ## Mintafeladatok vizsgához
 https://drive.google.com/drive/folders/1QLn59LvX0wXiHpYPngrwxwqSgE70CTPj?usp=sharing
@@ -18,8 +19,9 @@ A szerverre való csatlakozás opcionális, valamint nem csak a PHP tárggyal ka
 ## Ajánlott videósorozatok
 * [PHP for beginners](https://laracasts.com/series/php-for-beginners-2023-edition)
 * [Laravel 8 from scratch](https://laracasts.com/series/laravel-8-from-scratch)
+* [30 Days to Learn Laravel](https://laracasts.com/series/30-days-to-learn-laravel-11)
 
-Mindkettő előfizetés nélkül megtekinthető, erősen ajánlott az órai ismeretek kibővítésére!
+Mindhárom előfizetés nélkül megtekinthető, erősen ajánlott az órai ismeretek kibővítésére!
 
 ## Licensz
 

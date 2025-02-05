@@ -3,3 +3,4 @@ tmp/
 laravel_bu
 /node_modules
 phpunit/vendor
+.DS_Store
