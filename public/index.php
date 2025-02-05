@@ -2,84 +2,63 @@
 
 declare(strict_types=1);
 
-$variable = 'Hello World!';
-$variable = 5.5;
-$variable = 5;
-$variable = false;
-
-//echo $variable;
-#echo $variable;
-/*
- * több soros komment
- */
-//var_dump($variable);
-
-//$array = array('a', 'b');
-$array = [
-    'a',
-    'b',
-    5,
-    '5',
-    "5",
-    [true],
-    (object)[true],
-    null,
+$books = [
+    [
+        'name'   => 'Hyperion',
+        'author' => 'Dan Simmons',
+        'year'   => 1989,
+    ],
+    [
+        'name'   => 'Az utolsó kívánság',
+        'author' => 'Andrzej Sapkowski',
+        'year'   => 1993,
+    ],
+    [
+        'name'   => 'Alapítvány',
+        'author' => 'Isaac Asimov',
+        'year'   => 1951,
+    ],
 ];
-//count($array);
-//$foo = null;
-//echo '..::DEBUGGING::..';
-//echo '<pre>';
-//var_dump($array);
-//echo '</pre>';
-//exit;
-//print_r($array);
-
-
-//$foo = "1a";
-//$bar = 2;
 //
-//echo $foo . $bar;
-//echo $foo + $bar;
-//
-//$foo = 'abc';
-//$bar = 'def$foo';
-//$bar = 'def' . $foo;
-//$bar = "def$foo";
-//
-//echo $bar;
+//for ($i = 0 ; $i < count($books); $i++) {
+//    echo $books[$i]['name'] . ' (' . $books[$i]['author'] . '): ' . $books[$i]['year'] . PHP_EOL;
+//}
 
-//$foo = 'bar';
-//$bar = 'baz';
-//
-//echo $$foo;
-
-
-//var_dump("hello" == "hello");
-//var_dump("hello" == 'hello');
-//var_dump(1 == 1);
-//var_dump(1 == '1a');
-//var_dump("1" == '1');
-//var_dump("1" == true); // true
-//var_dump(1 == true); // true
-//var_dump(1.0 == true); // true
-//var_dump([1.0] == true); // true
-//var_dump((object)[1.0] == true); // true
-//var_dump([1.0, 2.0] == true); // true
-//var_dump([] == false);
-//var_dump("" == false);
-//var_dump(0 == false);
-//var_dump(0.0 == false);
-//var_dump(null == false);
-
-//var_dump([] === false);
-//var_dump("" === false);
-//var_dump(0 === false);
-//var_dump(0.0 === false);
-//var_dump(null === false);
-//var_dump(false === false);
-
-//var_dump(40 <=> 3); // 1
-//var_dump(3 <=> 3); // 0
-//var_dump(3 <=> 40); // -1
-
-//var_dump("foo" > 5);
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Books</title>
+</head>
+<body>
+<table style="width: 100%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Year</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($books as $book) {
+        echo '<tr>' . PHP_EOL;
+        echo '<td style="border: 1px solid #ff0000">' . $book['name'] . '</td>' . PHP_EOL;
+        echo '<td style="border: 1px solid #ff0000">' . $book['author'] . '</td>' . PHP_EOL;
+        echo '<td style="border: 1px solid #ff0000">' . $book['year'] . '</td>' . PHP_EOL;
+        echo '</tr>' . PHP_EOL;
+    }
+    ?>
+    </tbody>
+</table>
+<ul>
+    <?php
+    foreach ($books as $book) {
+        echo '<li>' . $book['name'] . ' (' . $book['author'] . '): ' . $book['year'] . '</li>' . PHP_EOL;
+    }
+    ?>
+</ul>
+</body>
+</html>
