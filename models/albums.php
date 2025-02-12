@@ -1,6 +1,6 @@
 <?php
 
-$albums = [
+return [
     ["title" => "Master of Puppets", "artist" => "Metallica", "year" => 1986, "label" => "Elektra", "duration" => 54],
     ["title" => "Ride the Lightning", "artist" => "Metallica", "year" => 1984, "label" => "Megaforce", "duration" => 47],
     ["title" => "Paranoid", "artist" => "Black Sabbath", "year" => 1970, "label" => "Vertigo", "duration" => 41],
