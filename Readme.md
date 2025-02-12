@@ -28,7 +28,7 @@ Mindhárom előfizetés nélkül megtekinthető, erősen ajánlott az órai isme
 
 ## Licensz
 
-A projekt forráskódja MIT Licensz alatt kerül kiadásra. Bővebb információ: [LICENSE.md](LICENSE.md) | [lf;dr Legal](https://tldrlegal.com/license/mit-license)
+A projekt forráskódja MIT Licensz alatt kerül kiadásra. Bővebb információ: [LICENSE.md](LICENSE.MD) | [lf;dr Legal](https://tldrlegal.com/license/mit-license)
 
 ## Kapcsolat
 * Kukel Attila <kukel.attila@sze.hu>
