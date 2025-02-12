@@ -1,3 +1,6 @@
+<?php
+include('partials/header.view.php');
+?>
 <ul>
     <?php
     foreach ($albums as $album) {
@@ -7,3 +10,6 @@
     }
     ?>
 </ul>
+<?php
+include('partials/footer.view.php');
+?>
