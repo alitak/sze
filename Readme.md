@@ -11,15 +11,18 @@
 ## Mintafeladatok vizsgához
 https://drive.google.com/drive/folders/1QLn59LvX0wXiHpYPngrwxwqSgE70CTPj?usp=sharing
 
+## Általános prezentáció
+https://drive.google.com/file/d/16iF0utDschjF7O0qwZTmJMS0PsN_xR8w/view?usp=sharing
+
 ## Discord server
-[Computer Science & Engineering](https://discord.gg/WwqpMRPD)
+[Computer Science & Engineering](https://discord.gg/sbbQ4KMzp7)
 
 A szerverre való csatlakozás opcionális, valamint nem csak a PHP tárggyal kapcsolatban lehet segítséget kérni.
 
 ## Ajánlott videósorozatok
 * [PHP for beginners](https://laracasts.com/series/php-for-beginners-2023-edition)
-* [Laravel 8 from scratch](https://laracasts.com/series/laravel-8-from-scratch)
 * [30 Days to Learn Laravel](https://laracasts.com/series/30-days-to-learn-laravel-11)
+* [Laravel 8 from scratch](https://laracasts.com/series/laravel-8-from-scratch)
 
 Mindhárom előfizetés nélkül megtekinthető, erősen ajánlott az órai ismeretek kibővítésére!
 
