@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-    Albums
-@endsection
-
 @section('content')
    <ul>
        <li><a href="">Album 1</a></li>
