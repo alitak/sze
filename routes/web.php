@@ -1,15 +1,10 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home', [
-        'title' => 'Home',
-    ]);
-});
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('albums', function () {
-    return view('albums', [
-        'title' => 'Albums',
-    ]);
-});
+Route::get('albums', [AlbumController::class, 'index']);
+Route::get('albums/show', [AlbumController::class, 'show']);
