@@ -1,23 +1,17 @@
 <?php
 
-include('../controllers/HomeController.php');
-include('../controllers/AlbumController.php');
-include('../controllers/ProjectController.php');
+use Illuminate\Http\Request;
 
-$url = trim($_SERVER['REQUEST_URI'], '/');
-$urlArray = explode('/', $url);
+define('LARAVEL_START', microtime(true));
 
-if ($urlArray[0] == '') {
-    $urlArray[0] = 'home';
+// Determine if the application is in maintenance mode...
+if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
+    require $maintenance;
 }
 
-$urlArray[1] = $urlArray[1] ?? 'index';
+// Register the Composer autoloader...
+require __DIR__.'/../vendor/autoload.php';
 
-$className = ucfirst($urlArray[0]) . 'Controller';
-if (! class_exists($className) || ! method_exists($className, $urlArray[1])) {
-    http_response_code(404);
-    echo '404 Not Found';
-    exit;
-}
-
-(new $className())->{$urlArray[1]}();
+// Bootstrap Laravel and handle the request...
+(require_once __DIR__.'/../bootstrap/app.php')
+    ->handleRequest(Request::capture());

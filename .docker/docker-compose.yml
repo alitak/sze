@@ -16,30 +16,30 @@ services:
       - "..:/var/www/"
       - "./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
 
-#  mysql-sze:
-#    image: mariadb:10.9
-#    #    image: mysql:8.0.27
-#    container_name: mysql-sze
-#    ports:
-#      - "3306:3306"
-#    expose:
-#      - 3306
-#    environment:
-#      MYSQL_ROOT_PASSWORD: a
-#    #    command: mysqld --default-authentication-plugin=mysql_native_password
-#    volumes:
-#      - mysql-sze:/var/lib/mysql
-#
-#  adminer-local:
-#    image: adminer
-#    container_name: adminer-local
-#    ports:
-#      - "29082:8080"
-#    environment:
-#      - ADMINER_DESIGN=lucas-sandery
-#      - ADMINER_DEFAULT_SERVER=mysql-sze
-#    depends_on:
-#      - mysql-sze
+  mysql-sze:
+    image: mariadb:10.9
+    #    image: mysql:8.0.27
+    container_name: mysql-sze
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: a
+    #    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-sze:/var/lib/mysql
+
+  adminer-local:
+    image: adminer
+    container_name: adminer-local
+    ports:
+      - "29082:8080"
+    environment:
+      - ADMINER_DESIGN=lucas-sandery
+      - ADMINER_DEFAULT_SERVER=mysql-sze
+    depends_on:
+      - mysql-sze
 
 volumes:
   mysql-sze:
