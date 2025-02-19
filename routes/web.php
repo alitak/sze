@@ -7,4 +7,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('albums', [AlbumController::class, 'index']);
-Route::get('albums/show', [AlbumController::class, 'show']);
+Route::get('albums/{id}/show', [AlbumController::class, 'show']);

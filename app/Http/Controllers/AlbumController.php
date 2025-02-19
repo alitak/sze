@@ -13,10 +13,11 @@ class AlbumController extends Controller
         ]);
     }
 
-    public function show(): View
+    public function show($id): View
     {
         return view('albums.show', [
             'title' => 'Album',
+            'id' => $id,
         ]);
     }
 }
