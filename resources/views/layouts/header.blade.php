@@ -4,7 +4,7 @@
         <nav>
             <ul class="flex space-x-6">
                 <li><a href="/albums" class="text-gray-700 hover:text-gray-900">Album list</a></li>
-                <li><a href="/teams" class="text-gray-700 hover:text-gray-900">Team list</a></li>
+                <li><a href="/artists" class="text-gray-700 hover:text-gray-900">Artist list</a></li>
             </ul>
         </nav>
     </div>
