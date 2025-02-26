@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-//        Album::factory()->count(10)->create();
+        Album::factory()->count(100)->create();
 
         $albums = [
             ["title" => "Master of Puppets", "artist" => "Metallica", "year" => 1986, "label" => "Elektra", "duration" => 54],

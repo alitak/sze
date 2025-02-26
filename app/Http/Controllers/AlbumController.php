@@ -11,7 +11,7 @@ class AlbumController extends Controller
     {
         return view('albums.index', [
             'title'  => 'Albums',
-            'albums' => Album::get(),
+            'albums' => Album::query()->paginate(10),
         ]);
     }
 

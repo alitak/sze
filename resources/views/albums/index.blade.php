@@ -10,4 +10,6 @@
             </li>
         @endforeach
     </ul>
+
+    {{ $albums->links() }}
 @endsection
