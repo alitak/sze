@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Album;
+use App\Models\Artist;
 use Illuminate\Database\Seeder;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Album::factory()->count(100)->create();
+//        Album::factory()->count(100)->create();
 
         $albums = [
             ["title" => "Master of Puppets", "artist" => "Metallica", "year" => 1986, "label" => "Elektra", "duration" => 54],
@@ -34,9 +35,69 @@ class DatabaseSeeder extends Seeder
             ["title" => "Holy Diver", "artist" => "Dio", "year" => 1983, "label" => "Warner Bros.", "duration" => 41],
         ];
 
-        foreach ($albums as $album) {
-            Album::create($album);
-        }
+        // artists kiemelés #1
+//        $artists = [];
+//        foreach ($albums as $album) {
+//            $artist = Artist::query()->create(['name' => $album['artist']]);
+//            $artists[$album['artist']] = $artist->id;
+//        }
+//        dd($artists);
+
+        // artists kiemelés #2
+        collect($albums)
+            ->pluck('artist')
+            ->unique()
+            ->each(fn (string $artist) => Artist::query()->create(['name' => $artist]));
+        $artists = Artist::query()->pluck('id', 'name');
+        //        $artists = [];
+//        foreach (Artist::all() as $artist) {
+//            $artists[$artist->name] = $artist->id;
+////            $artists[$artist->id] = $artist->name;
+//        }
+//        dd($artists);
+
+        // artists kiemelés #3
+//        $artists = [];
+//        collect($albums)
+//            ->pluck('artist')
+//            ->unique()
+//            ->each(function (string $artist) use (&$artists) {
+//                $artist = Artist::query()->create(['name' => $artist]);
+//                $artists[$artist->name] = $artist->id;
+//            });
+//        dd($artists);
+
+        // artists kiemelés #4
+//        $artists = [];
+//        $artistsCollection = collect($albums)
+//            ->pluck('artist')
+//            ->unique();
+//        foreach ($artistsCollection as $name) {
+//            $artist = Artist::query()->create(['name' => $name]);
+//            $artists[$artist->name] = $artist->id;
+//        }
+//        dd($artists);
+
+//        foreach ($albums as $album) {
+//            Album::query()->create([
+//                'title'     => $album['title'],
+//                'artist_id' => $artists[$album['artist']],
+//                'year'      => $album['year'],
+//                'label'     => $album['label'],
+//                'duration'  => $album['duration'],
+//            ]);
+//    }
+
+        collect($albums)
+            ->each(function (array $album) use ($artists) {
+                return Album::query()->create([
+                    'title'     => $album['title'],
+                    'artist_id' => $artists[$album['artist']],
+                    'year'      => $album['year'],
+                    'label'     => $album['label'],
+                    'duration'  => $album['duration'],
+                ]);
+            });
 
         // User::factory(10)->create();
 
