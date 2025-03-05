@@ -4,6 +4,7 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabelController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -16,3 +17,6 @@ Route::get('artists/{artist}/show', [ArtistController::class, 'show'])->name('ar
 
 Route::get('labels', [LabelController::class, 'index'])->name('labels.index');
 Route::get('labels/{label}/show', [LabelController::class, 'show'])->name('labels.show');
+
+Route::get('register', [RegisterController::class, 'create'])->name('register.create');
+Route::post('register', [RegisterController::class, 'store'])->name('register.store');
