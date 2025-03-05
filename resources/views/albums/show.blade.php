@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>{{ $album->title }}</h2>
-    <h3>{{ $album->artist }}</h3>
+    <h3>Artist: {{ $album->artist->name }}</h3>
     <p>
         {{ $album->year }} - {{ $album->label }}
     </p>

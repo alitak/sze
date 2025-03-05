@@ -6,11 +6,11 @@
             <li>
                 {{--                <a href="albums/{{ $album->id }}/show">--}}
                 <a href="{{ route('albums.show', $album) }}">
-                    {{ $album->title }}
+                    {{ $album->title }} ({{ $album->artist->name }})
                 </a>
             </li>
         @endforeach
     </ul>
 
-    {{ $albums->links() }}
+{{--    {{ $albums->links() }}--}}
 @endsection
