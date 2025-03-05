@@ -3,7 +3,7 @@
 @section('content')
     <ul>
         @foreach($artists as $artist)
-            <li><a href="artists/{{ $artist->id }}/show">{{ $artist->name }}</a></li>
+            <li><a href="{{ route('artists.show', $artist) }}">{{ $artist->name }}</a></li>
         @endforeach
     </ul>
 @endsection
