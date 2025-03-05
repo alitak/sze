@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artist;
 use Illuminate\Contracts\View\View;
 
 class ArtistController extends Controller
@@ -10,14 +11,15 @@ class ArtistController extends Controller
     {
         return view('artists.index', [
             'title' => 'Artists',
+            'artists' => Artist::query()->get(),
         ]);
     }
 
-    public function show($id): View
+    public function show(Artist $artist): View
     {
         return view('artists.show', [
-            'title' => 'Artist',
-            'id'    => $id,
+            'title' => $artist->name,
+            'artist' => $artist,
         ]);
     }
 }
