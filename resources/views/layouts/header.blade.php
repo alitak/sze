@@ -5,6 +5,7 @@
             <ul class="flex space-x-6">
                 <li><a href="{{ route('albums.index') }}" class="text-gray-700 hover:text-gray-900">Album list</a></li>
                 <li><a href="{{ route('artists.index') }}" class="text-gray-700 hover:text-gray-900">Artist list</a></li>
+                <li><a href="{{ route('labels.index') }}" class="text-gray-700 hover:text-gray-900">Label list</a></li>
             </ul>
         </nav>
     </div>

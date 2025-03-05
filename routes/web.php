@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LabelController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -12,3 +13,6 @@ Route::get('albums/{album}/show', [AlbumController::class, 'show'])->name('album
 
 Route::get('artists', [ArtistController::class, 'index'])->name('artists.index');
 Route::get('artists/{artist}/show', [ArtistController::class, 'show'])->name('artists.show');
+
+Route::get('labels', [LabelController::class, 'index'])->name('labels.index');
+Route::get('labels/{label}/show', [LabelController::class, 'show'])->name('labels.show');
