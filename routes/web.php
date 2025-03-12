@@ -20,9 +20,9 @@ Route::get('artists/{artist}/show', [ArtistController::class, 'show'])->name('ar
 Route::get('labels', [LabelController::class, 'index'])->name('labels.index');
 Route::get('labels/{label}/show', [LabelController::class, 'show'])->name('labels.show');
 
-Route::get('register', [RegisterController::class, 'create'])->name('register.create');
-Route::post('register', [RegisterController::class, 'store'])->name('register.store');
+Route::get('register', [RegisterController::class, 'create'])->name('register.create')->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->name('register.store')->middleware('guest');
 
-Route::get('login', [SessionController::class, 'create'])->name('login.create');
-Route::post('login', [SessionController::class, 'store'])->name('login.store');
-Route::delete('logout', [SessionController::class, 'destroy'])->name('login.destroy');
+Route::get('login', [SessionController::class, 'create'])->name('login.create')->middleware('guest');
+Route::post('login', [SessionController::class, 'store'])->name('login.store')->middleware('guest');
+Route::delete('logout', [SessionController::class, 'destroy'])->name('login.destroy')->middleware('guest');
