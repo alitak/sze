@@ -56,6 +56,20 @@
                             </li>
                         @endif
                     @else
+                        @if ( auth()->user()->is_admin)
+                            <li class="nav-item dropdown">
+                                <a id="adminDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    ADMIN
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                                    <a class="dropdown-item" href="#"> Albums </a>
+                                    <a class="dropdown-item" href="#"> Artists </a>
+                                    <a class="dropdown-item" href="{{ route('admin.labels.index') }}"> Labels </a>
+                                </div>
+                            </li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
