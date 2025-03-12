@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <ul>
+
+    <ul class="list-group">
         @foreach($albums as $album)
-            <li>
+            <li class="list-group-item">
                 {{--                <a href="albums/{{ $album->id }}/show">--}}
                 <a href="{{ route('albums.show', $album) }}">
                     {{ $album->title }} ({{ $album->artist->name }} - {{ $album->label->name }})
@@ -11,6 +12,5 @@
             </li>
         @endforeach
     </ul>
-
-{{--    {{ $albums->links() }}--}}
+    {{--    {{ $albums->links() }}--}}
 @endsection
