@@ -1,13 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (session('success'))
-        <div class="bg-green-500 p-4 rounded-lg mb-6 text-white text-center">
-            {{ session('success') }}
-        </div>
-    @endif
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-    <p class="text-lg text-gray-700">
-        Home lorem ipsum
-    </p>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

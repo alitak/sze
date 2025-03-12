@@ -1,17 +1,18 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function __invoke(): View
+    public function __construct()
     {
-        return view('home', [
-            'title' => 'Home',
-        ]);
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        return view('home');
     }
 }
