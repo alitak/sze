@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
@@ -28,6 +28,20 @@ class SessionController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
+    }
 
+//    public function destroy(Request $request)
+    public function destroy()
+    {
+//        auth()->logout();
+        Auth::logout();
+
+//        $request->session()->invalidate();
+//        $request->session()->regenerateToken();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('home');
     }
 }
