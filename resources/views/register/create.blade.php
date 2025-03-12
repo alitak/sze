@@ -5,11 +5,6 @@
     <form method="post" action="{{ route('register.store') }}">
         @csrf
         <div class="container mx-auto max-w-2xl mt-8">
-            @if (session('success'))
-                <div class="bg-green-500 p-4 rounded-lg mb-6 text-white text-center">
-                    {{ session('success') }}
-                </div>
-            @endif
             <div class="mt-4">
                 <label for="name" class="block text-gray-800">Name</label>
                 <input type="text" name="name" id="name" class="w-full border border-gray-300 p-2 rounded mt-2"

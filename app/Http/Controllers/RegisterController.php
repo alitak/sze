@@ -10,10 +10,6 @@ class RegisterController extends Controller
 {
     public function create()
     {
-//        if (auth()->check()) {
-//            return redirect()->route('home');
-//        }
-
         return view('register.create', [
             'title' => 'Register',
         ]);
@@ -21,13 +17,12 @@ class RegisterController extends Controller
 
     public function store(RegisterRequest $request): RedirectResponse
     {
-//        if (auth()->check()) {
-//            return redirect()->route('home');
-//        }
+        $user = User::query()->create($request->validated());
 
-        User::query()->create($request->validated());
+        auth()->login($user);
+//        auth()->loginUsingId($user->id);
 
-        return redirect()->route('register.create')->with('success', 'Your account has been created.');
+        return redirect()->route('home')->with('success', 'Your account has been created.');
     }
 
 }
