@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\LabelRequest;
 use App\Models\Label;
+use Illuminate\Support\Facades\Storage;
 
 class LabelController extends Controller
 {
@@ -40,6 +41,7 @@ class LabelController extends Controller
 
     public function edit(Label $label)
     {
+        // php artisan storage:link
         return view('admin.labels.edit', [
             'label' => $label,
         ]);
@@ -47,7 +49,14 @@ class LabelController extends Controller
 
     public function update(LabelRequest $request, Label $label)
     {
-        $label->update($request->validated());
+        $validated = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('labels', 'public');
+            $validated['image'] = $image;
+        }
+
+        $label->update($validated);
 
         return redirect()->route('admin.labels.index')
             ->with('success', 'Label updated successfully.');

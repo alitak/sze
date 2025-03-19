@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 class Label extends Model
 {
@@ -12,5 +14,10 @@ class Label extends Model
     public function albums(): HasMany
     {
         return $this->hasMany(Album::class);
+    }
+
+    public function imageUrl(): Attribute
+    {
+        return Attribute::make(fn() => Storage::disk('public')->url($this->image));
     }
 }
