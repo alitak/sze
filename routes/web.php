@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\LabelController;
+use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,11 @@ Route::get('labels', [LabelController::class, 'index'])->name('labels.index');
 Route::get('labels/{label}/show', [LabelController::class, 'show'])->name('labels.show');
 
 Auth::routes();
+
+Route::get('settings/password-change', [PasswordController::class, 'edit'])
+    ->name('settings.password-change');
+Route::put('settings/password-change', [PasswordController::class, 'update']);
+
 
 Route::group([
     'prefix' => 'admin',
