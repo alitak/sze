@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Label list</h1>
+    <div class="d-flex align-items-center">
+        <h1 class="flex-grow-1">Label list</h1>
+        <a href="{{ route('admin.labels.create') }}" class="btn btn-primary">Add</a>
+    </div>
+
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <table class="table table-striped table-hover">
         <thead>
@@ -16,9 +25,10 @@
             <tr>
                 <th scope="row">{{ $label->id }}</th>
                 <td>{{ $label->name }}</td>
-                <td>
-                    <a href="{{ route('admin.labels.edit', $label) }}" class="btn btn-primary">Edit</a>
-                    <form action="{{ route('admin.labels.destroy', $label) }}" method="POST" class="d-inline">
+                <td class="d-flex justify-content-end">
+                    <a href="{{ route('admin.labels.show', $label) }}" class="btn btn-secondary">Show</a>
+                    <a href="{{ route('admin.labels.edit', $label) }}" class="btn btn-primary mx-3">Edit</a>
+                    <form action="{{ route('admin.labels.destroy', $label) }}" method="POST" class="d-inline" onsubmit="return confirm('Sure?')">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>

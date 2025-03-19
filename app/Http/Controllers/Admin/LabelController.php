@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\LabelRequest;
 use App\Models\Label;
-use Illuminate\Http\Request;
 
 class LabelController extends Controller
 {
@@ -20,31 +20,44 @@ class LabelController extends Controller
 
     public function create()
     {
-        //
+        return view('admin.labels.create');
     }
 
-    public function store(Request $request)
+    public function store(LabelRequest $request)
     {
-        //
+        Label::query()->create($request->validated());
+
+        return redirect()->route('admin.labels.index')
+            ->with('success', 'Label created successfully.');
     }
 
     public function show(Label $label)
     {
-        //
+        return view('admin.labels.show', [
+            'label' => $label,
+        ]);
     }
 
     public function edit(Label $label)
     {
-        //
+        return view('admin.labels.edit', [
+            'label' => $label,
+        ]);
     }
 
-    public function update(Request $request, Label $label)
+    public function update(LabelRequest $request, Label $label)
     {
-        //
+        $label->update($request->validated());
+
+        return redirect()->route('admin.labels.index')
+            ->with('success', 'Label updated successfully.');
     }
 
     public function destroy(Label $label)
     {
-        //
+        $label->delete();
+
+        return redirect()->route('admin.labels.index')
+            ->with('success', 'Label deleted successfully.');
     }
 }
