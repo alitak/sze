@@ -6,6 +6,9 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @deprecated
+ */
 class SessionController extends Controller
 {
     public function create()

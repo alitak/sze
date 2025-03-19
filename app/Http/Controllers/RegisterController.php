@@ -6,6 +6,9 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 
+/**
+ * @deprecated
+ */
 class RegisterController extends Controller
 {
     public function create()
