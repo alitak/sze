@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('labels', function (Blueprint $table) {
@@ -18,7 +19,7 @@ return new class extends Migration {
         Album::query()
             ->pluck('label')
             ->unique()
-            ->each(fn(string $label) => Label::query()->create(['name' => $label]));
+            ->each(fn (string $label) => Label::query()->create(['name' => $label]));
 
         $labels = Label::query()->pluck('id', 'name')->toArray();
 
@@ -27,7 +28,7 @@ return new class extends Migration {
         });
 
         Album::query()
-            ->each(fn(Album $album) => $album->update(['label_id' => $labels[$album->label]]));
+            ->each(fn (Album $album) => $album->update(['label_id' => $labels[$album->label]]));
 
         Schema::table('albums', function (Blueprint $table) {
             $table->dropColumn('label');

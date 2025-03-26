@@ -9,10 +9,10 @@ class AlbumFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'  => $this->faker->sentence(3),
+            'title' => $this->faker->sentence(3),
             'artist' => $this->faker->name(),
-            'year'   => $this->faker->year(),
-            'label'  => $this->faker->company(),
+            'year' => $this->faker->year(),
+            'label' => $this->faker->company(),
             'duration' => $this->faker->randomDigit(),
         ];
     }

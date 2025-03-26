@@ -21,5 +21,4 @@ class Album extends Model
     {
         return $this->belongsTo(Label::class);
     }
-
 }

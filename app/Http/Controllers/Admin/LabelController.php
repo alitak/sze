@@ -12,7 +12,7 @@ class LabelController extends Controller
     public function index()
     {
         return view('admin.labels.index', [
-//            'labels' => Label::query()->simplePaginate(10),
+            //            'labels' => Label::query()->simplePaginate(10),
             'labels' => Label::query()->paginate(10),
         ]);
     }

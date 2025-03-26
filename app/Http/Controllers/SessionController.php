@@ -33,14 +33,14 @@ class SessionController extends Controller
         ]);
     }
 
-//    public function destroy(Request $request)
+    //    public function destroy(Request $request)
     public function destroy()
     {
-//        auth()->logout();
+        //        auth()->logout();
         Auth::logout();
 
-//        $request->session()->invalidate();
-//        $request->session()->regenerateToken();
+        //        $request->session()->invalidate();
+        //        $request->session()->regenerateToken();
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();

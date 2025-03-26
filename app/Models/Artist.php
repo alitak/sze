@@ -21,7 +21,7 @@ class Artist extends Model
 
     public function imageUrl(): Attribute
     {
-        return Attribute::make(fn() => $this->image
+        return Attribute::make(fn () => $this->image
             ? Storage::disk('public')->url($this->image)
             : 'https://placehold.co/220x160'
         );

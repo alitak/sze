@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Label;
-use Illuminate\Http\Request;
 
 class LabelController extends Controller
 {
@@ -15,10 +14,9 @@ class LabelController extends Controller
         ]);
     }
 
-
     public function show(Label $label)
     {
-//        dd($label->albums()->where('title', 'Paranoid')->get());
+        //        dd($label->albums()->where('title', 'Paranoid')->get());
         // $label->albums
         // $label->albums()
 

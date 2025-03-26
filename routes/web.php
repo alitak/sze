@@ -26,7 +26,6 @@ Route::get('settings/password-change', [PasswordController::class, 'edit'])
     ->name('settings.password-change');
 Route::put('settings/password-change', [PasswordController::class, 'update']);
 
-
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
@@ -36,4 +35,3 @@ Route::group([
     Route::resource('labels', \LabelController::class);
     Route::resource('artists', \ArtistController::class);
 });
-
