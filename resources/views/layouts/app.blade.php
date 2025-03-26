@@ -65,7 +65,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
                                     <a class="dropdown-item" href="#"> Albums </a>
-                                    <a class="dropdown-item" href="#"> Artists </a>
+                                    <a class="dropdown-item" href="{{ route('admin.artists.index') }}"> Artists </a>
                                     <a class="dropdown-item" href="{{ route('admin.labels.index') }}"> Labels </a>
                                 </div>
                             </li>

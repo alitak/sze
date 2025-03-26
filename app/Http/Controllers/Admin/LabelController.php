@@ -53,7 +53,6 @@ class LabelController extends Controller
 
     public function update(LabelRequest $request, Label $label)
     {
-
         $validated = $request->validated();
 
         if ($request->has('removeImage')

@@ -34,5 +34,6 @@ Route::group([
     'middleware' => [IsAdminMiddleware::class],
 ], function () {
     Route::resource('labels', \LabelController::class);
+    Route::resource('artists', \ArtistController::class);
 });
 
