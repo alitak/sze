@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -28,6 +30,7 @@ class ArtistController extends Controller
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('artists', 'public');
         }
+
         // TODO image resize
         Artist::query()->create($validated);
 

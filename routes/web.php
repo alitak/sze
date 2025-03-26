@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\LabelController;
@@ -27,9 +29,9 @@ Route::get('settings/password-change', [PasswordController::class, 'edit'])
 Route::put('settings/password-change', [PasswordController::class, 'update']);
 
 Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => 'App\Http\Controllers\Admin',
+    'prefix'     => 'admin',
+    'as'         => 'admin.',
+    'namespace'  => 'App\Http\Controllers\Admin',
     'middleware' => [IsAdminMiddleware::class],
 ], function () {
     Route::resource('labels', \LabelController::class);

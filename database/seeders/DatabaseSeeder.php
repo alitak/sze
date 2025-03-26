@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Album;
@@ -91,11 +93,11 @@ class DatabaseSeeder extends Seeder
         collect($albums)
             ->each(function (array $album) use ($artists) {
                 return Album::query()->create([
-                    'title' => $album['title'],
+                    'title'     => $album['title'],
                     'artist_id' => $artists[$album['artist']],
-                    'year' => $album['year'],
-                    'label' => $album['label'],
-                    'duration' => $album['duration'],
+                    'year'      => $album['year'],
+                    'label'     => $album['label'],
+                    'duration'  => $album['duration'],
                 ]);
             });
 

@@ -1,5 +1,5 @@
 <?php
-include('partials/header.view.php');
+include 'partials/header.view.php';
 ?>
 <ul>
     <?php
@@ -8,8 +8,8 @@ include('partials/header.view.php');
             . $album['title'] . ' (' . $album['artist'] . '): ' . $album['year']
             . '</a></li>' . PHP_EOL;
     }
-    ?>
+?>
 </ul>
 <?php
-include('partials/footer.view.php');
+include 'partials/footer.view.php';
 ?>

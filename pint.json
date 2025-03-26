@@ -1,0 +1,123 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "declare_strict_types": true,
+        "binary_operator_spaces": {
+            "operators": {
+                "=>": "align"
+            }
+        },
+        "concat_space": {
+            "spacing": "one"
+        },
+        "no_superfluous_phpdoc_tags": false,
+        "not_operator_with_space": false,
+        "not_operator_with_successor_space": false,
+        "visibility_required": {
+            "elements": [
+                "property",
+                "method",
+                "const"
+            ]
+        },
+        "return_assignment": true,
+        "method_chaining_indentation": true,
+        "class_attributes_separation": {
+            "elements": {
+                "const": "one",
+                "method": "one",
+                "property": "one",
+                "trait_import": "one",
+                "case": "one"
+            }
+        },
+        "phpdoc_line_span": {
+            "property": "single",
+            "method": "multi",
+            "const": "single"
+        },
+        "no_blank_lines_after_class_opening": true,
+        "php_unit_method_casing": {
+            "case": "camel_case"
+        },
+        "blank_line_after_opening_tag": true,
+        "blank_line_after_namespace": true,
+        "blank_line_before_statement": {
+            "statements": [
+                "return",
+                "do",
+                "exit",
+                "goto",
+                "try",
+                "switch"
+            ]
+        },
+        "blank_line_between_import_groups": true,
+        "no_blank_lines_after_phpdoc": true,
+        "no_extra_blank_lines": {
+            "tokens": [
+                "extra",
+                "throw",
+                "use",
+                "use_trait",
+                "parenthesis_brace_block",
+                "square_brace_block",
+                "curly_brace_block"
+            ]
+        },
+        "fully_qualified_strict_types": true,
+        "global_namespace_import": {
+            "import_classes": true,
+            "import_constants": true,
+            "import_functions": true
+        },
+        "no_trailing_whitespace": true,
+        "phpdoc_separation": {
+            "groups": [
+                [
+                    "deprecated",
+                    "link",
+                    "see",
+                    "since"
+                ],
+                [
+                    "author",
+                    "copyright",
+                    "license"
+                ],
+                [
+                    "category",
+                    "package",
+                    "subpackage"
+                ],
+                [
+                    "property",
+                    "property-read",
+                    "property-write"
+                ],
+                [
+                    "return"
+                ]
+            ]
+        },
+        "phpdoc_trim_consecutive_blank_line_separation": true,
+        "single_blank_line_at_eof": true,
+        "single_line_after_imports": true,
+        "types_spaces": {
+            "space": "none"
+        },
+        "ternary_to_null_coalescing": true,
+        "trailing_comma_in_multiline": {
+            "elements": [
+                "arrays",
+                "match"
+            ]
+        },
+        "elseif": true,
+        "cast_spaces": {
+            "space": "none"
+        },
+        "compact_nullable_typehint": true,
+        "class_reference_name_casing": true
+    }
+}

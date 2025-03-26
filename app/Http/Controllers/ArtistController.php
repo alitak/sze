@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
@@ -10,7 +12,7 @@ class ArtistController extends Controller
     public function index(): View
     {
         return view('artists.index', [
-            'title' => 'Artists',
+            'title'   => 'Artists',
             'artists' => Artist::query()->get(),
         ]);
     }
@@ -18,7 +20,7 @@ class ArtistController extends Controller
     public function show(Artist $artist): View
     {
         return view('artists.show', [
-            'title' => $artist->name,
+            'title'  => $artist->name,
             'artist' => $artist,
         ]);
     }

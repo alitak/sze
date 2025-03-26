@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 include '../controllers/HomeController.php';
 include '../controllers/AlbumController.php';
 include '../controllers/ProjectController.php';
@@ -13,10 +15,11 @@ if ($urlArray[0] == '') {
 
 $urlArray[1] = $urlArray[1] ?? 'index';
 
-$className = ucfirst($urlArray[0]).'Controller';
-if (! class_exists($className) || ! method_exists($className, $urlArray[1])) {
+$className = ucfirst($urlArray[0]) . 'Controller';
+if (!class_exists($className) || !method_exists($className, $urlArray[1])) {
     http_response_code(404);
     echo '404 Not Found';
+
     exit;
 }
 

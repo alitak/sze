@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -29,6 +31,7 @@ class LabelController extends Controller
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('labels', 'public');
         }
+
         // TODO image resize
         Label::query()->create($validated);
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Label;
@@ -9,7 +11,7 @@ class LabelController extends Controller
     public function index()
     {
         return view('labels.index', [
-            'title' => 'Labels',
+            'title'  => 'Labels',
             'labels' => Label::query()->withCount('albums')->paginate(4),
         ]);
     }
@@ -21,8 +23,8 @@ class LabelController extends Controller
         // $label->albums()
 
         return view('labels.show', [
-            'title' => $label->name,
-            'label' => $label,
+            'title'  => $label->name,
+            'label'  => $label,
             'albums' => $label->albums()->with('artist')->paginate(1),
         ]);
     }

@@ -1,10 +1,10 @@
 <?php
-//echo '..::DEBUGGING::..';
-//echo '<pre>';
-//var_dump(__FILE__);
-//echo '</pre>';
-//exit;
-include('partials/header.view.php');
+// echo '..::DEBUGGING::..';
+// echo '<pre>';
+// var_dump(__FILE__);
+// echo '</pre>';
+// exit;
+include 'partials/header.view.php';
 ?>
 
 <ul>
@@ -17,5 +17,5 @@ include('partials/header.view.php');
 </ul>
 
 <?php
-include('partials/footer.view.php');
+include 'partials/footer.view.php';
 ?>

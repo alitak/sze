@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Album;
@@ -10,7 +12,7 @@ class AlbumController extends Controller
     public function index(): View
     {
         return view('albums.index', [
-            'title' => 'Albums',
+            'title'  => 'Albums',
             'albums' => Album::query()->with(['artist', 'label'])->get(),
         ]);
     }

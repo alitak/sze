@@ -6,11 +6,11 @@ class ProjectController
 {
     public function index()
     {
-        echo "project index";
+        echo 'project index';
     }
 
     public function show()
     {
-        echo "project show";
+        echo 'project show';
     }
 }
