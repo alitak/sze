@@ -6,7 +6,8 @@
             <div class="card-header">{{ __('Create label') }}</div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('admin.labels.store') }}">
+                <form enctype="multipart/form-data"
+                      method="POST" action="{{ route('admin.labels.store') }}">
                     @csrf
 
                     <div class="row mb-3">
@@ -21,6 +22,13 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="image" class="col-md-4 col-form-label text-md-end">Cover</label>
+                        <div class="col-md-6">
+                            <input name="image" class="form-control" type="file" id="image">
                         </div>
                     </div>
 
