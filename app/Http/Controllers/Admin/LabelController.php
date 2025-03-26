@@ -49,11 +49,24 @@ class LabelController extends Controller
 
     public function update(LabelRequest $request, Label $label)
     {
+
         $validated = $request->validated();
 
+        if ($request->has('removeImage')
+            && $label->image
+            && Storage::disk('public')->exists($label->image)
+        ) {
+            Storage::disk('public')->delete($label->image);
+        }
+
         if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('labels', 'public');
-            $validated['image'] = $image;
+            if ($label->image && Storage::disk('public')->exists($label->image)) {
+                Storage::disk('public')->delete($label->image);
+            }
+
+            $validated['image'] = $request->file('image')->store('labels', 'public');
+        } elseif ($request->has('removeImage')) {
+            $validated['image'] = null;
         }
 
         $label->update($validated);

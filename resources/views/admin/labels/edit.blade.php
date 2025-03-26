@@ -33,6 +33,14 @@
                             <input name="image" class="form-control" type="file" id="image">
 
                             @if ($label->image)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="removeImage"
+                                           id="removeImage">
+                                    <label class="form-check-label" for="removeImage">
+                                        Remove image
+                                    </label>
+                                </div>
+
                                 <img src="{{ $label->image_url  }}" alt="{{ $label->name }}">
                             @endif
                         </div>

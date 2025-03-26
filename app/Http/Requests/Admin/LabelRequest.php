@@ -10,7 +10,7 @@ class LabelRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
-            'image_file' => ['image', 'mimes:jpeg,jpg,png', 'max:2048'],
+            'image' => ['image', 'mimes:jpeg,jpg,png', 'max:2048'],
         ];
     }
 }
