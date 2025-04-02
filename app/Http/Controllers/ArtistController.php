@@ -13,7 +13,7 @@ class ArtistController extends Controller
     {
         return view('artists.index', [
             'title'   => 'Artists',
-            'artists' => Artist::query()->get(),
+            'artists' => Artist::query()->withCount('albums')->paginate(8),
         ]);
     }
 

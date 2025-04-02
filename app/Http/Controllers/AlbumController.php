@@ -13,7 +13,7 @@ class AlbumController extends Controller
     {
         return view('albums.index', [
             'title'  => 'Albums',
-            'albums' => Album::query()->with(['artist', 'label'])->get(),
+            'albums' => Album::query()->with(['artist', 'label'])->paginate(8),
         ]);
     }
 
