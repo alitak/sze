@@ -29,11 +29,12 @@ Route::get('settings/password-change', [PasswordController::class, 'edit'])
 Route::put('settings/password-change', [PasswordController::class, 'update']);
 
 Route::group([
-    'prefix'     => 'admin',
-    'as'         => 'admin.',
-    'namespace'  => 'App\Http\Controllers\Admin',
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'App\Http\Controllers\Admin',
     'middleware' => [IsAdminMiddleware::class],
 ], function () {
+    Route::resource('albums', \AlbumController::class);
     Route::resource('labels', \LabelController::class);
     Route::resource('artists', \ArtistController::class);
 });
