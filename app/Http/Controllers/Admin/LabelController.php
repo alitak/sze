@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\LabelRequest;
 use App\Models\Label;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
 
 class LabelController extends Controller
 {
@@ -30,9 +31,12 @@ class LabelController extends Controller
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('labels', 'public');
+
+            Image::read(Storage::disk('public')->get($validated['image']))
+                ->scale(215, 160)
+                ->save(Storage::disk('public')->path($validated['image']));
         }
 
-        // TODO image resize
         Label::query()->create($validated);
 
         return redirect()->route('admin.labels.index')
@@ -65,13 +69,16 @@ class LabelController extends Controller
             Storage::disk('public')->delete($label->image);
         }
 
-        // TODO image resize
         if ($request->hasFile('image')) {
             if ($label->image && Storage::disk('public')->exists($label->image)) {
                 Storage::disk('public')->delete($label->image);
             }
 
             $validated['image'] = $request->file('image')->store('labels', 'public');
+
+            Image::read(Storage::disk('public')->get($validated['image']))
+                ->scale(215, 160)
+                ->save(Storage::disk('public')->path($validated['image']));
         } elseif ($request->has('removeImage')) {
             $validated['image'] = null;
         }

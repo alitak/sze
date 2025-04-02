@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ArtistRequest;
 use App\Models\Artist;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
 
 class ArtistController extends Controller
 {
@@ -29,9 +30,12 @@ class ArtistController extends Controller
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('artists', 'public');
+
+            Image::read(Storage::disk('public')->get($validated['image']))
+                ->scale(215, 160)
+                ->save(Storage::disk('public')->path($validated['image']));
         }
 
-        // TODO image resize
         Artist::query()->create($validated);
 
         return redirect()->route('admin.artists.index')
@@ -63,13 +67,16 @@ class ArtistController extends Controller
             Storage::disk('public')->delete($artist->image);
         }
 
-        // TODO image resize
         if ($request->hasFile('image')) {
             if ($artist->image && Storage::disk('public')->exists($artist->image)) {
                 Storage::disk('public')->delete($artist->image);
             }
 
             $validated['image'] = $request->file('image')->store('artists', 'public');
+
+            Image::read(Storage::disk('public')->get($validated['image']))
+                ->scale(215, 160)
+                ->save(Storage::disk('public')->path($validated['image']));
         } elseif ($request->has('removeImage')) {
             $validated['image'] = null;
         }
