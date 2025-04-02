@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Traits\HasImage;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @mixin IdeHelperAlbum
@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Storage;
 class Album extends Model
 {
     use HasFactory;
+    use HasImage;
 
     protected $guarded = [];
 
@@ -44,11 +45,4 @@ class Album extends Model
         );
     }
 
-     public function imageUrl(): Attribute
-    {
-        return Attribute::make(fn () => $this->image
-            ? Storage::disk('public')->url($this->image)
-            : 'https://placehold.co/215x160'
-        );
-    }
 }
