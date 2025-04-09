@@ -22,9 +22,9 @@ class HomeController extends Controller
             ->get();
 
         return view('home', [
-            'labels' => $labels,
+            'labels'  => $labels,
             'artists' => $artists,
-            'albums' => $albums,
+            'albums'  => $albums,
         ]);
     }
 }

@@ -63,7 +63,7 @@ class AlbumController extends Controller
     public function edit(Album $album)
     {
         return view('admin.albums.edit', [
-            'album' => $album,
+            'album'   => $album,
             'artists' => Artist::query()
                 ->select('id', 'name')
                 ->orderBy('name')

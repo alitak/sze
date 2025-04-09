@@ -17,22 +17,29 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $title
+ * @property string|null $description
  * @property int $artist_id
  * @property int|null $label_id
+ * @property string|null $image
  * @property int $year
  * @property int $duration
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Artist $artist
+ * @property-read string $duration_for_humans
+ * @property-read mixed $image_url
  * @property-read \App\Models\Label|null $label
  * @method static \Database\Factories\AlbumFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album search($search)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereArtistId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereDuration($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereLabelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Album whereUpdatedAt($value)
@@ -59,6 +66,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist search($search)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artist whereImage($value)
@@ -85,6 +93,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Label newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Label newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Label query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Label search($search)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Label whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Label whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Label whereImage($value)
