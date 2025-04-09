@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('albums', [AlbumController::class, 'index'])->name('albums.index');
 Route::get('albums/{album}/show', [AlbumController::class, 'show'])->name('albums.show');
@@ -42,6 +43,7 @@ Route::group([
 // home page, search
 // in random order
 // users crud
+// crud search
 // profile page
 // api
 // enum
