@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('albums', [AlbumController::class, 'index'])->name('albums.index');
 Route::get('albums/{album}/show', [AlbumController::class, 'show'])->name('albums.show');
@@ -19,7 +18,8 @@ Route::get('albums/{album}/show', [AlbumController::class, 'show'])->name('album
 Route::get('artists', [ArtistController::class, 'index'])->name('artists.index');
 Route::get('artists/{artist}/show', [ArtistController::class, 'show'])->name('artists.show');
 
-Route::get('labels', [LabelController::class, 'index'])->name('labels.index');
+Route::get('labels', [LabelController::class, 'index'])->name('labels.index')
+    ->middleware('auth');
 Route::get('labels/{label}/show', [LabelController::class, 'show'])->name('labels.show');
 
 Auth::routes();
@@ -38,3 +38,11 @@ Route::group([
     Route::resource('labels', \LabelController::class);
     Route::resource('artists', \ArtistController::class);
 });
+
+// home page, search
+// in random order
+// users crud
+// profile page
+// api
+// enum
+// roles
