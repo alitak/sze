@@ -28,13 +28,15 @@ class SearchController extends Controller
     {
         $search = $request->input('search');
 
-        $artists = Artist::query()
-            ->search($search)
-            ->pluck('id');
+//        $artists = Artist::query()
+//            ->search($search)
+//            ->pluck('id');
 
+//            ->orWhereIn('artist_id', $artists)
         $albums = Album::query()
+            ->whereHas('artist', fn($query) => $query->search($search))
+            ->orWhere(fn($query) => $query->doesntHave('label')->orWhereHas('label', fn($query) => $query->search($search)))
             ->search($search)
-            ->orWhereIn('artist_id', $artists)
             ->get();
 
         dump($albums->toArray());

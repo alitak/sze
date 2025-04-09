@@ -15,11 +15,12 @@ trait Searchable
 //        if (is_string($search)) {
 //            $search = [$search];
 //        }
-
-        foreach ($search as $word) {
-            foreach ($this->searchable as $column) {
-                $query->orWhere($column, 'LIKE', '%' . $word . '%');
+        $query->where(function (Builder $query) use ($search) {
+            foreach ($search as $word) {
+                foreach ($this->searchable as $column) {
+                    $query->orWhere($column, 'LIKE', '%' . $word . '%');
+                }
             }
-        }
+        });
     }
 }
