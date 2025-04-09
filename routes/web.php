@@ -6,12 +6,15 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabelController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
+
+Route::get('/search', SearchController::class)->name('search');
 
 Route::get('albums', [AlbumController::class, 'index'])->name('albums.index');
 Route::get('albums/{album}/show', [AlbumController::class, 'show'])->name('albums.show');
@@ -30,9 +33,9 @@ Route::get('settings/password-change', [PasswordController::class, 'edit'])
 Route::put('settings/password-change', [PasswordController::class, 'update']);
 
 Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => 'App\Http\Controllers\Admin',
+    'prefix'     => 'admin',
+    'as'         => 'admin.',
+    'namespace'  => 'App\Http\Controllers\Admin',
     'middleware' => [IsAdminMiddleware::class],
 ], function () {
     Route::resource('albums', \AlbumController::class);

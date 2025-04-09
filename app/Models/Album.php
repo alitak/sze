@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Traits\HasImage;
+use App\Models\Traits\Searchable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,8 +18,14 @@ class Album extends Model
 {
     use HasFactory;
     use HasImage;
+    use Searchable;
 
     protected $guarded = [];
+
+    private array $searchable = [
+        'title',
+        'description',
+    ];
 
     public function artist(): BelongsTo
     {
@@ -44,5 +51,4 @@ class Album extends Model
             },
         );
     }
-
 }

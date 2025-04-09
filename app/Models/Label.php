@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Traits\HasImage;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @mixin IdeHelperLabel
@@ -16,6 +15,11 @@ use Illuminate\Support\Facades\Storage;
 class Label extends Model
 {
     use HasImage;
+    use Searchable;
+
+    private array $searchable = [
+        'name',
+    ];
 
     protected $guarded = [];
 
