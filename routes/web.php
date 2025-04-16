@@ -43,8 +43,6 @@ Route::group([
     Route::resource('artists', \ArtistController::class);
 });
 
-// home page, search
-// in random order
 // users crud
 // crud search
 // profile page

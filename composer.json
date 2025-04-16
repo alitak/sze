@@ -9,6 +9,7 @@
         "php": "^8.2",
         "intervention/image-laravel": "^1.5",
         "laravel/framework": "^11.31",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.6"
     },
