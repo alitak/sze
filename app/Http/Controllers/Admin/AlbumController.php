@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\AlbumRequest;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Label;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
 
@@ -19,8 +20,43 @@ class AlbumController extends Controller
 
     public function index()
     {
+//        $albumQuery = Album::query()
+//            ->with('artist', 'label');
+//
+//        if (request()->get('title')) {
+//            $albumQuery->where('title', 'like', '%' . request()->get('title') . '%');
+//        }
+//
+//        if (request()->get('year')) {
+//            $albumQuery->where('year', request()->get('year'));
+//        }
+//
+//        return view('admin.albums.index', [
+//            'albums' => $albumQuery->paginate(),
+//            'search' => [
+//                'title' => request()->get('title'),
+//                'year' => request()->get('year'),
+//            ],
+//        ]);
+        $albums = Album::query()
+            ->with('artist', 'label')
+            ->when(request()->get('title'), static fn(Builder $query, string $title): Builder => $query->where('title', 'like', '%' . $title . '%'))
+            ->when(request()->get('artist_id'), static fn(Builder $query, int $artist_id): Builder => $query->where('artist_id', $artist_id))
+            ->when(request()->get('label_id'), static fn(Builder $query, int $label_id): Builder => $query->where('label_id', $label_id))
+            ->when(request()->get('year'), static fn(Builder $query, int $year): Builder => $query->where('year', '>=', $year))
+            ->paginate()
+            ->withQueryString();
+
         return view('admin.albums.index', [
-            'albums' => Album::query()->with('artist', 'label')->paginate(),
+            'albums' => $albums,
+            'artists' => Artist::query()->orderBy('name')->pluck('name', 'id'),
+            'labels' => Label::query()->orderBy('name')->pluck('name', 'id'),
+            'search' => [
+                'title' => request()->get('title'),
+                'artist_id' => request()->get('artist_id'),
+                'label_id' => request()->get('label_id'),
+                'year' => request()->get('year'),
+            ],
         ]);
     }
 

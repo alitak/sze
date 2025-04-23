@@ -47,7 +47,6 @@ Route::group([
 Route::get('profile', [ProfileController::class, 'edit'])->middleware('auth')->name('profile.edit');
 Route::put('profile', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
 
-// crud search
 // users crud
 // enum
 // roles
