@@ -43,9 +43,9 @@ Route::group([
     Route::resource('artists', \ArtistController::class);
 });
 
+// api
 // users crud
 // crud search
 // profile page
-// api
 // enum
 // roles
