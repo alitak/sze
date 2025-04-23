@@ -6,6 +6,7 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabelController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Middleware\IsAdminMiddleware;
@@ -43,9 +44,10 @@ Route::group([
     Route::resource('artists', \ArtistController::class);
 });
 
-// api
-// users crud
+Route::get('profile', [ProfileController::class, 'edit'])->middleware('auth')->name('profile.edit');
+Route::put('profile', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
+
 // crud search
-// profile page
+// users crud
 // enum
 // roles
