@@ -13,7 +13,7 @@ class IsAdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         abort_unless(
-            auth()->check() && auth()->user()->is_admin === 1,
+            auth()->check() && auth()->user()->is_admin === true,
             404,
         );
 
