@@ -34,8 +34,6 @@ return new class extends Migration
             ['id' => 13, 'description' => 'A Metallica legnépszerűbb albuma, himnikus dallamokkal.'],
             ['id' => 14, 'description' => 'Magyar rockballadák egy albumban.'],
             ['id' => 15, 'description' => 'Dio első szólólemeze, klasszikus heavy metal.'],
-            ['id' => 16, 'description' => 'Corporate koncepcióalbum üzleti témákkal.'],
-            ['id' => 18, 'description' => 'Ironikus című album technokrata világképpel.'],
         ];
 
         foreach ($albums as $album) {
