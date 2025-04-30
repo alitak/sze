@@ -40,21 +40,21 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        collect(self::$albums)
-            ->pluck('artist')
-            ->unique()
-            ->each(fn (string $artist) => Artist::query()->create(['name' => $artist]));
-        $artists = Artist::query()->pluck('id', 'name');
-
-        collect(self::$albums)
-            ->each(function (array $album) use ($artists) {
-                return Album::query()->create([
-                    'title'     => $album['title'],
-                    'artist_id' => $artists[$album['artist']],
-                    'year'      => $album['year'],
-                    'label'     => $album['label'],
-                    'duration'  => $album['duration'],
-                ]);
-            });
+//        collect(self::$albums)
+//            ->pluck('artist')
+//            ->unique()
+//            ->each(fn (string $artist) => Artist::query()->create(['name' => $artist]));
+//        $artists = Artist::query()->pluck('id', 'name');
+//
+//        collect(self::$albums)
+//            ->each(function (array $album) use ($artists) {
+//                return Album::query()->create([
+//                    'title'     => $album['title'],
+//                    'artist_id' => $artists[$album['artist']],
+//                    'year'      => $album['year'],
+//                    'label'     => $album['label'],
+//                    'duration'  => $album['duration'],
+//                ]);
+//            });
     }
 };

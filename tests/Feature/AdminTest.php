@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Models\Artist;
 use App\Models\User;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -48,4 +49,48 @@ class AdminTest extends TestCase
         $this->get(route('admin.labels.index'))
             ->assertStatus(200);
     }
+
+    #[Test]
+    public function testArtistCanBeCreated()
+    {
+        $artist = Artist::factory()->make();
+
+        $this->actingAsAdmin();
+
+        $this->post(route('admin.artists.store'), $artist->toArray());
+
+        $this->assertDatabaseCount('artists', 1);
+        $this->assertDatabaseHas('artists', [
+            'name' => $artist->name,
+        ]);
+    }
+
+    #[Test]
+    public function testArtistCanBeUpdated()
+    {
+        $artist = Artist::factory()->create();
+
+        $this->actingAsAdmin();
+        $this->put(route('admin.artists.update', $artist->id), ['name' => 'Foo Bar']);
+
+        $this->assertDatabaseCount('artists', 1);
+        $this->assertDatabaseHas('artists', [
+            'name' => 'Foo Bar',
+        ]);
+    }
+
+    #[Test]
+    public function testArtistCanBeDeleted()
+    {
+        $artist = Artist::factory()->create();
+
+        $this->actingAsAdmin();
+        $this->delete(route('admin.artists.destroy', $artist));
+
+        $this->assertDatabaseCount('artists', 0);
+        $this->assertDatabaseMissing('artists', [
+            'name' => $artist->name,
+        ]);
+    }
+
 }

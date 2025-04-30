@@ -36,11 +36,11 @@ return new class extends Migration
             ['id' => 15, 'description' => 'Dio első szólólemeze, klasszikus heavy metal.'],
         ];
 
-        foreach ($albums as $album) {
-            Album::query()->updateOrCreate(
-                ['id' => $album['id']],
-                ['description' => $album['description']]
-            );
-        }
+//        foreach ($albums as $album) {
+//            Album::query()->updateOrCreate(
+//                ['id' => $album['id']],
+//                ['description' => $album['description']]
+//            );
+//        }
     }
 };
