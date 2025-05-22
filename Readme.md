@@ -32,3 +32,7 @@ A projekt forráskódja MIT Licensz alatt kerül kiadásra. Bővebb információ
 
 ## Kapcsolat
 * Kukel Attila <kukel.attila@sze.hu>
+
+### Vizsgakörnyezet  
+`powershell -Command "if (-not (Test-Path 'C:\Data\PHP_d104')) { New-Item -Path 'C:\Data\PHP_d104' -ItemType Directory } ; Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/alitak/sze/main/setup_exam.bat' -OutFile 'C:\Data\PHP_d104\setup_exam.bat'; Start-Process -Wait 'C:\Data\PHP_d104\setup_exam.bat'; Remove-Item 'C:\Data\PHP_d104\setup_exam.bat'"`  
+
