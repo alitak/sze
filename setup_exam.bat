@@ -47,11 +47,11 @@ docker exec php-sze composer install
 
 REM 5. Chrome megnyitása 2 füllel
 echo [5/7] Chrome böngésző indítása...
-start "" "chrome.exe" "http://localhost:29083" "http://localhost:29082"
+start "" "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://localhost:29083" "http://localhost:29082"
 
 REM 6. PhpStorm indítása
 echo [6/7] PhpStorm indítása...
-start "" "C:\Program Files\JetBrains\PhpStorm 2023.3.5\bin\phpstorm64.exe" "%TARGET_DIR%"
+start "" "C:\Program Files\JetBrains\PhpStorm 2022.3.2\bin\phpstorm64.exe" "%TARGET_DIR%"
 
 echo [7/7] ✅ Vizsgakörnyezet teljesen kész!
 pause
