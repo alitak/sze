@@ -11,8 +11,8 @@ echo [1/7] Docker Desktop indítása...
 tasklist /FI "IMAGENAME eq Docker Desktop.exe" | find /I "Docker Desktop.exe" >nul
 if errorlevel 1 (
     start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe"
-    echo Várunk 15 másodpercet a Docker elindulására...
-    timeout /T 15 >nul
+    echo Várunk 60 másodpercet a Docker elindulására...
+    timeout /T 60 >nul
 )
 
 REM 2. Fájlok előkészítése
